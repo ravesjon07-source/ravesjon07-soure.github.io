@@ -1138,10 +1138,12 @@ footer {
 .modal-content {
     background: var(--bg-card);
     backdrop-filter: blur(20px);
-    padding: 3rem;
-    border-radius: 25px;
-    max-width: 550px;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 450px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
     border: 2px solid rgba(255, 70, 85, 0.3);
@@ -2141,3 +2143,160 @@ footer {
         transform: scale(0.98);
     }
 }   
+
+/* ===== УЛУЧШЕННАЯ АДАПТИВНОСТЬ МОДАЛЬНОГО ОКНА ===== */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 1.5rem;
+        max-width: 95%;
+        border-radius: 15px;
+        max-height: 85vh;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .modal-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.2rem;
+        max-width: 95%;
+        border-radius: 12px;
+        max-height: 80vh;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .modal-content p {
+        font-size: 0.85rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.85rem;
+        padding: 0.7rem;
+    }
+    
+    .btn-submit {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-close {
+        top: 0.8rem;
+        right: 0.8rem;
+        width: 30px;
+        height: 30px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Кнопка "Получить услугу" в деталях услуги */
+.service-action-btn {
+    display: none;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-red), #ff1744);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease;
+}
+
+.service-action-btn.visible {
+    display: block;
+}
+
+.service-action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 23, 68, 0.4);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===== УЛУЧШЕНИЕ СТИЛЕЙ ДЛЯ СПИСКА УСЛУГ В МОДАЛЬНОМ ОКНЕ ===== */
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.modal-content ul li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-light);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-content ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.modal-content ul li:last-child {
+    border-bottom: none;
+}
+
+/* Стили для кнопки в модальном окне */
+.modal-content button {
+    transition: all 0.3s ease;
+}
+
+.modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+}
+
+.modal-content button:active {
+    transform: translateY(0);
+}
