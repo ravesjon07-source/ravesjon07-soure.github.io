@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const allExpands = document.querySelectorAll('.expand-content');
             const allItems = document.querySelectorAll('.expandable-item');
             
-            // Закрываем все другие
             allExpands.forEach(content => {
                 if (content.id !== `expand-${expandId}`) {
                     content.classList.remove('active');
@@ -29,11 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Переключаем текущий
             expandContent.classList.toggle('active');
             this.classList.toggle('active');
             
-            // Плавный скролл к раскрытому контенту
             if (expandContent.classList.contains('active')) {
                 setTimeout(() => {
                     expandContent.scrollIntoView({ 
@@ -45,13 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Остальная инициализация
     initScrollProgress();
     initAnimations();
     initMobileMenu();
     initCounters();
     
-    // Проверяем сохраненный язык
     const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
     setLanguage(savedLang);
 });
@@ -61,7 +56,6 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('selectedLanguage', lang);
     
-    // Обновляем активную кнопку
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-lang') === lang) {
@@ -69,7 +63,6 @@ function setLanguage(lang) {
         }
     });
     
-    // Обновляем весь текст на странице
     updatePageLanguage(lang);
 }
 
@@ -93,10 +86,8 @@ function openMap(mapType) {
     let url = '';
     
     if (mapType === 'yandex') {
-        // Открыть в Яндекс.Картах
         url = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16&l=map`;
     } else if (mapType === 'google') {
-        // Открыть в Google Maps
         url = `https://www.google.com/maps?q=${lat},${lng}`;
     }
     
@@ -112,7 +103,6 @@ function updatePageLanguage(lang) {
     elements.forEach(element => {
         const translation = element.getAttribute(`data-${lang}`);
         if (translation) {
-            // Проверяем, является ли элемент input или textarea
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation;
             } else {
@@ -132,7 +122,6 @@ function initScrollProgress() {
         
         scrollProgress.style.width = scrollPercent + '%';
         
-        // Header scroll effect
         const header = document.querySelector('header');
         if (scrollTop > 50) {
             header.classList.add('scrolled');
@@ -157,7 +146,6 @@ function initAnimations() {
         });
     }, observerOptions);
     
-    // Наблюдаем за всеми элементами с классом animate-on-scroll
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
     });
@@ -174,7 +162,6 @@ function initMobileMenu() {
             mainNav.classList.toggle('active');
             this.classList.toggle('active');
             
-            // Блокируем скролл body когда меню открыто
             if (mainNav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -182,7 +169,6 @@ function initMobileMenu() {
             }
         });
         
-        // Закрываем меню при клике на ссылку
         document.querySelectorAll('#mainNav a').forEach(link => {
             link.addEventListener('click', function() {
                 mainNav.classList.remove('active');
@@ -191,7 +177,6 @@ function initMobileMenu() {
             });
         });
         
-        // Закрываем меню при клике вне его
         document.addEventListener('click', function(e) {
             if (!mainNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 if (mainNav.classList.contains('active')) {
@@ -202,7 +187,6 @@ function initMobileMenu() {
             }
         });
         
-        // Закрываем меню при изменении размера экрана
         let resizeTimer;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
@@ -241,8 +225,8 @@ function initCounters() {
 
 function animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000; // 2 seconds
-    const increment = target / (duration / 16); // 60 FPS
+    const duration = 2000;
+    const increment = target / (duration / 16);
     let current = 0;
     
     const updateCounter = () => {
@@ -258,12 +242,39 @@ function animateCounter(element) {
     updateCounter();
 }
 
+// ===== СОХРАНЕНИЕ ОРИГИНАЛЬНОЙ ФОРМЫ =====
+let originalFormHTML = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Сохраняем оригинальную форму при загрузке страницы
+    const formSection = document.getElementById('formSection');
+    if (formSection) {
+        originalFormHTML = formSection.innerHTML;
+    }
+});
+
 // ===== MODAL FUNCTIONS =====
 function openModal() {
     const modal = document.getElementById('modal');
+    const formSection = document.getElementById('formSection');
+    const successMessage = document.getElementById('successMessage');
+    
+    // Восстанавливаем оригинальную форму
+    if (originalFormHTML) {
+        formSection.innerHTML = originalFormHTML;
+    }
+    
+    formSection.style.display = 'block';
+    successMessage.style.display = 'none';
+    
     modal.classList.add('active');
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    
+    // Переинициализируем обработчик формы
+    setTimeout(() => {
+        initFormHandler();
+    }, 100);
 }
 
 function closeModal() {
@@ -272,19 +283,179 @@ function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = '';
     
-    // Сбрасываем форму и показываем форму заново
-    document.getElementById('formSection').style.display = 'block';
+    // Восстанавливаем оригинальную форму
+    const formSection = document.getElementById('formSection');
+    if (originalFormHTML) {
+        formSection.innerHTML = originalFormHTML;
+    }
+    
     document.getElementById('successMessage').style.display = 'none';
-    document.getElementById('successMessage').classList.remove('active');
-    document.getElementById('modalForm').reset();
 }
 
-// Закрытие модального окна при клике вне его
+// Закрытие при клике вне окна
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('modal');
     if (event.target === modal) {
         closeModal();
     }
+});
+
+// ===== ПОКАЗ ДЕТАЛЕЙ УСЛУГИ (только для раздела "Наши услуги") =====
+function showServiceDetails(button) {
+    console.log('showServiceDetails вызвана');
+    
+    const serviceCard = button.closest('.service-card-new');
+    if (!serviceCard) {
+        console.error('Не найдена карточка услуги');
+        return;
+    }
+    
+    const serviceTitle = serviceCard.querySelector('h3');
+    const serviceList = serviceCard.querySelector('.service-list');
+    
+    if (!serviceTitle || !serviceList) {
+        console.error('Не найдены элементы услуги');
+        return;
+    }
+    
+    const title = serviceTitle.textContent;
+    const listHTML = serviceList.innerHTML;
+    
+    console.log('Название услуги:', title);
+    
+    const modal = document.getElementById('modal');
+    const formSection = document.getElementById('formSection');
+    
+    // Создаём контент с деталями
+    const detailsHTML = `
+        <span class="modal-close" onclick="closeModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--text-light); cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 70, 85, 0.1);">&times;</span>
+        
+        <h2 style="color: var(--white); margin-bottom: 1rem; text-align: center; font-size: 1.8rem;">
+            ${title}
+        </h2>
+        
+        <p style="color: var(--text-light); text-align: center; margin-bottom: 2rem; font-size: 1rem;">
+            Подробная информация об услуге
+        </p>
+        
+        <ul style="text-align: left; margin: 1.5rem 0; color: var(--text-light); list-style: none; padding: 0;">
+            ${listHTML}
+        </ul>
+        
+        <button onclick="showServiceForm('${title.replace(/'/g, "\\'")}');" style="margin-top: 1.5rem; width: 100%; padding: 1rem; background: linear-gradient(135deg, #8B0000, #ff1744); color: white; border: none; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+            Получить услугу
+        </button>
+    `;
+    
+    // Заменяем содержимое
+    formSection.innerHTML = detailsHTML;
+    formSection.style.display = 'block';
+    
+    // Скрываем сообщение об успехе
+    document.getElementById('successMessage').style.display = 'none';
+    
+    // Показываем модальное окно
+    modal.classList.add('active');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    console.log('Модальное окно открыто с деталями');
+}
+
+// ===== ПОКАЗ ФОРМЫ ЗАЯВКИ С АВТОЗАПОЛНЕНИЕМ =====
+function showServiceForm(serviceTitle) {
+    console.log('showServiceForm вызвана для:', serviceTitle);
+    
+    const formSection = document.getElementById('formSection');
+    
+    // Восстанавливаем оригинальную форму
+    if (originalFormHTML) {
+        formSection.innerHTML = originalFormHTML;
+    }
+    
+    formSection.style.display = 'block';
+    
+    // Автозаполняем комментарий через небольшую задержку
+    setTimeout(() => {
+        const commentField = document.getElementById('modalComment');
+        if (commentField) {
+            commentField.value = `Интересует услуга: ${serviceTitle}`;
+            console.log('Комментарий заполнен');
+        }
+        
+        // Переинициализируем обработчик формы
+        initFormHandler();
+    }, 100);
+}
+
+// ===== ИНИЦИАЛИЗАЦИЯ ОБРАБОТЧИКА ФОРМЫ =====
+function initFormHandler() {
+    const modalForm = document.getElementById("modalForm");
+    if (!modalForm) return;
+    
+    // Удаляем старые обработчики
+    const newForm = modalForm.cloneNode(true);
+    modalForm.parentNode.replaceChild(newForm, modalForm);
+    
+    // Добавляем новый обработчик
+    newForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById("modalName").value.trim();
+        const phone = document.getElementById("modalPhone").value.trim();
+        const comment = document.getElementById("modalComment").value.trim();
+        const telegram = document.getElementById("modalTelegram").value.trim();
+        const instagram = document.getElementById("modalInstagram").value.trim();
+        
+        if (!name || !phone) {
+            const errorMessages = {
+                ru: 'Пожалуйста, заполните имя и телефон',
+                en: 'Please fill in name and phone',
+                uz: 'Iltimos, ism va telefonni to\'ldiring'
+            };
+            alert(errorMessages[currentLang]);
+            return;
+        }
+        
+        const submitBtn = newForm.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        const loadingTexts = {
+            ru: 'Отправка...',
+            en: 'Sending...',
+            uz: 'Yuborilmoqda...'
+        };
+        submitBtn.textContent = loadingTexts[currentLang];
+        submitBtn.disabled = true;
+        
+        const sourceTexts = {
+            ru: 'Форма заявки',
+            en: 'Request Form',
+            uz: 'Ariza shakli'
+        };
+        
+        const success = await sendToTelegram(name, phone, sourceTexts[currentLang], comment, telegram, instagram);
+        
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        if (success) {
+            document.getElementById("formSection").style.display = "none";
+            document.getElementById("successMessage").style.display = "block";
+            newForm.reset();
+        } else {
+            const errorMessages = {
+                ru: '❌ Ошибка отправки. Попробуйте позже.',
+                en: '❌ Sending error. Try later.',
+                uz: '❌ Yuborishda xato.'
+            };
+            alert(errorMessages[currentLang]);
+        }
+    });
+}
+
+// Инициализируем при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    initFormHandler();
 });
 
 // ===== TELEGRAM INTEGRATION =====
@@ -349,68 +520,6 @@ async function sendToTelegram(name, phone, source, comment = '', telegram = '', 
     }
 }
 
-// ===== FORM SUBMISSION =====
-const modalForm = document.getElementById("modalForm");
-if (modalForm) {
-    modalForm.addEventListener("submit", async function(e) {
-        e.preventDefault();
-        
-        const name = document.getElementById("modalName").value.trim();
-        const phone = document.getElementById("modalPhone").value.trim();
-        const comment = document.getElementById("modalComment").value.trim();
-        const telegram = document.getElementById("modalTelegram").value.trim();
-        const instagram = document.getElementById("modalInstagram").value.trim();
-        
-        // Валидация
-        if (!name || !phone) {
-            const errorMessages = {
-                ru: 'Пожалуйста, заполните имя и телефон',
-                en: 'Please fill in name and phone',
-                uz: 'Iltimos, ism va telefonni to\'ldiring'
-            };
-            alert(errorMessages[currentLang]);
-            return;
-        }
-        
-        // Показываем индикатор загрузки
-        const submitBtn = modalForm.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        const loadingTexts = {
-            ru: 'Отправка...',
-            en: 'Sending...',
-            uz: 'Yuborilmoqda...'
-        };
-        submitBtn.textContent = loadingTexts[currentLang];
-        submitBtn.disabled = true;
-        
-        // Отправляем в Telegram
-        const sourceTexts = {
-            ru: 'Модальное окно',
-            en: 'Modal Window',
-            uz: 'Modal oyna'
-        };
-        const success = await sendToTelegram(name, phone, sourceTexts[currentLang], comment, telegram, instagram);
-        
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        
-        if (success) {
-            // Показываем сообщение об успехе
-            document.getElementById("formSection").style.display = "none";
-            document.getElementById("successMessage").style.display = "block";
-            document.getElementById("successMessage").classList.add("active");
-            modalForm.reset();
-        } else {
-            const errorMessages = {
-                ru: '❌ Ошибка отправки. Попробуйте позже или свяжитесь с нами напрямую.',
-                en: '❌ Sending error. Try later or contact us directly.',
-                uz: '❌ Yuborishda xato. Keyinroq urinib ko\'ring yoki biz bilan to\'g\'ridan-to\'g\'ri bog\'laning.'
-            };
-            alert(errorMessages[currentLang]);
-        }
-    });
-}
-
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -429,156 +538,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== FLOATING PARTICLES ANIMATION =====
-function createFloatingParticles() {
-    const hero = document.querySelector('.hero');
-    if (!hero) return;
-    
-    const particlesContainer = hero.querySelector('.floating-particles');
-    if (!particlesContainer) return;
-    
-    // Создаем дополнительные плавающие частицы
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 10 + 5}px;
-            height: ${Math.random() * 10 + 5}px;
-            background: rgba(255, 215, 0, ${Math.random() * 0.5 + 0.2});
-            border-radius: 50%;
-            top: ${Math.random() * 100}%;
-            left: ${Math.random() * 100}%;
-            animation: floatParticle ${Math.random() * 10 + 5}s infinite ease-in-out;
-            animation-delay: ${Math.random() * 5}s;
-        `;
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Добавляем CSS для анимации частиц
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes floatParticle {
-        0%, 100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.3;
-        }
-        25% {
-            transform: translate(10px, -20px) scale(1.2);
-            opacity: 0.6;
-        }
-        50% {
-            transform: translate(-10px, -40px) scale(0.8);
-            opacity: 0.4;
-        }
-        75% {
-            transform: translate(15px, -20px) scale(1.1);
-            opacity: 0.5;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Инициализируем частицы после загрузки страницы
-window.addEventListener('load', createFloatingParticles);
-
 // ===== PHONE NUMBER FORMATTER =====
-const phoneInputs = document.querySelectorAll('input[type="tel"]');
-phoneInputs.forEach(input => {
-    input.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        
-        // Если начинается не с 998, добавляем
-        if (value.length > 0 && !value.startsWith('998')) {
-            value = '998' + value;
-        }
-        
-        // Форматируем: +998 XX XXX XX XX
-        if (value.length >= 3) {
-            value = '+' + value.slice(0, 3) + ' ' + value.slice(3);
-        }
-        if (value.length >= 7) {
-            value = value.slice(0, 7) + ' ' + value.slice(7);
-        }
-        if (value.length >= 11) {
-            value = value.slice(0, 11) + ' ' + value.slice(11);
-        }
-        if (value.length >= 14) {
-            value = value.slice(0, 14) + ' ' + value.slice(14, 16);
-        }
-        
-        e.target.value = value;
-    });
-    
-    // Устанавливаем начальное значение
-    if (!input.value) {
-        input.value = '+998 ';
-    }
-});
-
-// ===== PERFORMANCE OPTIMIZATION =====
-// Ленивая загрузка изображений
-const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length > 0 && !value.startsWith('998')) {
+                    value = '998' + value;
+                }
+                
+                if (value.length >= 3) {
+                    value = '+' + value.slice(0, 3) + ' ' + value.slice(3);
+                }
+                if (value.length >= 7) {
+                    value = value.slice(0, 7) + ' ' + value.slice(7);
+                }
+                if (value.length >= 11) {
+                    value = value.slice(0, 11) + ' ' + value.slice(11);
+                }
+                if (value.length >= 14) {
+                    value = value.slice(0, 14) + ' ' + value.slice(14, 16);
+                }
+                
+                e.target.value = value;
+            });
+            
+            if (!input.value) {
+                input.value = '+998 ';
             }
         });
-    });
-    
-    lazyImages.forEach(img => imageObserver.observe(img));
-}
+    }, 500);
+});
 
-// ===== FORM VALIDATION =====
-function validateForm(formId) {
-    const form = document.getElementById(formId);
-    if (!form) return false;
-    
-    const name = form.querySelector('input[type="text"]');
-    const phone = form.querySelector('input[type="tel"]');
-    
-    let isValid = true;
-    
-    // Проверка имени
-    if (name && name.value.trim().length < 2) {
-        isValid = false;
-        name.style.borderColor = 'red';
-    } else if (name) {
-        name.style.borderColor = '';
-    }
-    
-    // Проверка телефона
-    if (phone && phone.value.replace(/\D/g, '').length < 12) {
-        isValid = false;
-        phone.style.borderColor = 'red';
-    } else if (phone) {
-        phone.style.borderColor = '';
-    }
-    
-    return isValid;
-}
-
-// ===== CONSOLE MESSAGE =====
 console.log('%c🚀 MoyDeklarant.uz', 'color: #8B0000; font-size: 24px; font-weight: bold;');
 console.log('%c💼 Ваш надежный таможенный партнер', 'color: #FFD700; font-size: 16px;');
-console.log('%c📞 Контакты:', 'color: #8B0000; font-size: 14px; font-weight: bold;');
-console.log('%cTelegram: @umid70_03', 'color: #0088cc; font-size: 12px;');
-console.log('%cInstagram: @s.u.j_', 'color: #C837AB; font-size: 12px;');
-console.log('%cТелефон: +998 97 243 49 57', 'color: #FFD700; font-size: 12px;');
-
-// ===== ERROR TRACKING =====
-window.addEventListener('error', function(e) {
-    console.error('Error occurred:', e.error);
-});
-
-window.addEventListener('unhandledrejection', function(e) {
-    console.error('Unhandled promise rejection:', e.reason);
-
-});
-
+console.log('%c📞 +998 97 408 70 03', 'color: #FFD700; font-size: 12px;');
