@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoyDeklarant.uz | Ваш надежный таможенный партнер</title>
+    
+    <!-- Favicon - иконка сайта -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="MoyDeklarant.uz" class="logo-image">
+        </a>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav id="mainNav">
+            <a href="#about" class="lang-text" data-ru="О нас" data-en="About Us" data-uz="Biz haqimizda">Biz haqimizda</a>
+            <a href="#services" class="lang-text" data-ru="Услуги" data-en="Services" data-uz="Xizmatlar">Xizmatlar</a>
+            <a href="#free-services" class="lang-text" data-ru="Бесплатные услуги" data-en="Free Services" data-uz="Bepul xizmatlar">Bepul xizmatlar</a>
+            <a href="#directions" class="lang-text" data-ru="Направления" data-en="Directions" data-uz="Yo'nalishlar">Yo'nalishlar</a>
+            <a href="#contacts" class="lang-text" data-ru="Контакты" data-en="Contacts" data-uz="Kontaktlar">Kontaktlar</a>
+            
+            <div class="social-icons">
+                <a href="https://t.me/umid70_03" target="_blank" aria-label="Telegram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#0088cc">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.093.036.306.02.472z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/s.u.j_?igsh=MTFnemZndHJxZmZ6aQ==" target="_blank" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="url(#instagram-gradient)">
+                        <defs>
+                            <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#FFDD55" />
+                                <stop offset="50%" style="stop-color:#FF543E" />
+                                <stop offset="100%" style="stop-color:#C837AB" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <button class="btn-primary lang-text" onclick="openModal()" data-ru="Оставить заявку" data-en="Leave a Request" data-uz="So'rov qoldirish">So'rov qoldirish</button>
+            
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="uz">UZ</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+            <div class="space-veil"></div>
+            <div class="space-stars" aria-hidden="true">
+                <div class="space-star" style="left:10%;top:20%;animation-delay:0s"></div>
+                <div class="space-star" style="left:30%;top:40%;animation-delay:0.6s"></div>
+                <div class="space-star" style="left:60%;top:15%;animation-delay:1.2s"></div>
+                <div class="space-star" style="left:80%;top:70%;animation-delay:0.9s"></div>
+            </div>
+            <div class="comet" style="top:15%; left:-10%; animation-delay:2s;"></div>
+        <div class="animated-bg">
+            <div class="floating-particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="animate-on-scroll fade-in-up lang-text" data-ru="Ваш надежный таможенный партнер" data-en="Your Reliable Customs Partner" data-uz="Sizning ishonchli bojxona hamkoringiz">Sizning ishonchli<br>bojxona hamkoringiz</h1>
+            
+            <ul class="hero-list">
+                <li class="animate-on-scroll fade-in-left expandable-item" style="animation-delay: 0.2s;" data-expand="customs">
+                    <span class="lang-text" data-ru="Таможенное оформление" data-en="Customs Clearance" data-uz="Bojxona rasmiylashtiruvi">Bojxona rasmiylashtiruvi</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </li>
+                <li class="animate-on-scroll fade-in-left expandable-item" style="animation-delay: 0.3s;" data-expand="contracts">
+                    <span class="lang-text" data-ru="Работа с контрактами" data-en="Contract Work" data-uz="Shartnomalar bilan ishlash">Shartnomalar bilan ishlash</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </li>
+                <li class="animate-on-scroll fade-in-left expandable-item" style="animation-delay: 0.4s;" data-expand="certification">
+                    <span class="lang-text" data-ru="Сертификация" data-en="Certification" data-uz="Sertifikatlash">Sertifikatlash</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </li>
+                <li class="animate-on-scroll fade-in-left expandable-item" style="animation-delay: 0.5s;" data-expand="valuation">
+                    <span class="lang-text" data-ru="Определение таможенной стоимости" data-en="Customs Value Determination" data-uz="Bojxona qiymatini aniqlash">Bojxona qiymatini aniqlash</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </li>
+                <li class="animate-on-scroll fade-in-left expandable-item" style="animation-delay: 0.6s;" data-expand="timesaving">
+                    <span class="lang-text" data-ru="Экономия времени" data-en="Time Saving" data-uz="Vaqt tejash">Vaqt tejash</span>
+                    <svg class="expand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Expandable Content Sections -->
+    <div class="expand-content" id="expand-customs">
+        <div class="expand-inner">
+            <h3 class="lang-text" data-ru="Таможенное оформление" data-en="Customs Clearance" data-uz="Bojxona rasmiylashtiruvi">Bojxona rasmiylashtiruvi</h3>
+            <p class="lang-text" data-ru="Таможенное оформление — это установленная государством процедура, при которой товары и транспортные средства законно пересекают границу." data-en="Customs clearance is a state-established procedure in which goods and vehicles legally cross the border." data-uz="Bojxona rasmiylashtiruvi — bu davlat tomonidan belgilangan tartib bo'lib, unda tovarlar va transport vositalari qonuniy ravishda chegarani kesib o'tadi.">Bojxona rasmiylashtiruvi — bu davlat tomonidan belgilangan tartib bo'lib, unda tovarlar va transport vositalari qonuniy ravishda chegarani kesib o'tadi.</p>
+            <ul>
+                <li class="lang-text" data-ru="подаются документы (декларация, счета, сертификаты);" data-en="documents are submitted (declaration, invoices, certificates);" data-uz="hujjatlar taqdim etiladi (deklaratsiya, hisob-fakturalar, sertifikatlar);">hujjatlar taqdim etiladi (deklaratsiya, hisob-fakturalar, sertifikatlar);</li>
+                <li class="lang-text" data-ru="уплачиваются таможенные пошлины, налоги и сборы;" data-en="customs duties, taxes and fees are paid;" data-uz="bojxona to'lovlari, soliqlar va yig'imlar to'lanadi;">bojxona to'lovlari, soliqlar va yig'imlar to'lanadi;</li>
+                <li class="lang-text" data-ru="проводится контроль (документальный, иногда физический);" data-en="control is carried out (documentary, sometimes physical);" data-uz="nazorat amalga oshiriladi (hujjatli, ba'zan jismoniy);">nazorat amalga oshiriladi (hujjatli, ba'zan jismoniy);</li>
+                <li class="lang-text" data-ru="товар получает разрешение на ввоз или вывоз." data-en="goods receive permission for import or export." data-uz="tovar import yoki eksport uchun ruxsat oladi;">tovar import yoki eksport uchun ruxsat oladi.</li>
+            </ul>
+            <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Xizmat olish</button>
+        </div>
+    </div>
+
+    <div class="expand-content" id="expand-contracts">
+        <div class="expand-inner">
+            <h3 class="lang-text" data-ru="Работа с контрактами" data-en="Contract Work" data-uz="Shartnomalar bilan ishlash">Shartnomalar bilan ishlash</h3>
+            <p class="lang-text" data-ru="Работа с контрактами в таможенной сфере — это оформление и контроль внешнеэкономических договоров, по которым товары пересекают границу." data-en="Working with contracts in the customs sphere is the registration and control of foreign economic contracts under which goods cross the border." data-uz="Bojxona sohasida shartnomalar bilan ishlash — bu tovarlar chegarani kesib o'tadigan tashqi iqtisodiy shartnomalarni rasmiylashtirish va nazorat qilish.">Bojxona sohasida shartnomalar bilan ishlash — bu tovarlar chegarani kesib o'tadigan tashqi iqtisodiy shartnomalarni rasmiylashtirish va nazorat qilish.</p>
+            <ul>
+                <li class="lang-text" data-ru="проверка внешнеторгового контракта (стороны, предмет, условия поставки);" data-en="verification of foreign trade contract (parties, subject, delivery terms);" data-uz="tashqi savdo shartnomasini tekshirish (tomonlar, mavzu, yetkazib berish shartlari);">tashqi savdo shartnomasini tekshirish (tomonlar, mavzu, yetkazib berish shartlari);</li>
+                <li class="lang-text" data-ru="контроль цен, валюты платежа и условий Incoterms;" data-en="control of prices, payment currency and Incoterms;" data-uz="narxlar, to'lov valyutasi va Incoterms shartlarini nazorat qilish;">narxlar, to'lov valyutasi va Incoterms shartlarini nazorat qilish;</li>
+                <li class="lang-text" data-ru="подготовка контрактных данных для таможенной декларации;" data-en="preparation of contractual data for customs declaration;" data-uz="bojxona deklaratsiyasi uchun shartnoma ma'lumotlarini tayyorlash;">bojxona deklaratsiyasi uchun shartnoma ma'lumotlarini tayyorlash;</li>
+                <li class="lang-text" data-ru="соблюдение требований таможенного и валютного законодательства;" data-en="compliance with customs and currency legislation;" data-uz="bojxona va valyuta qonunchiligiga rioya qilish;">bojxona va valyuta qonunchiligiga rioya qilish;</li>
+                <li class="lang-text" data-ru="сопровождение изменений и дополнений к контракту." data-en="support of changes and additions to the contract." data-uz="shartnomaga o'zgartirishlar va qo'shimchalarni qo'llab-quvvatlash;">shartnomaga o'zgartirishlar va qo'shimchalarni qo'llab-quvvatlash.</li>
+            </ul>
+            <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Xizmat olish</button>
+        </div>
+    </div>
+
+    <div class="expand-content" id="expand-certification">
+        <div class="expand-inner">
+            <h3 class="lang-text" data-ru="Сертификация" data-en="Certification" data-uz="Sertifikatlash">Sertifikatlash</h3>
+            <p class="lang-text" data-ru="Сертификация — это подтверждение того, что ввозимые или вывозимые товары соответствуют требованиям безопасности и стандартам страны ввоза." data-en="Certification is confirmation that imported or exported goods comply with safety requirements and standards of the importing country." data-uz="Sertifikatlash — bu import yoki eksport qilinadigan tovarlar xavfsizlik talablari va import qiluvchi mamlakat standartlariga mos kelishini tasdiqlash.">Sertifikatlash — bu import yoki eksport qilinadigan tovarlar xavfsizlik talablari va import qiluvchi mamlakat standartlariga mos kelishini tasdiqlash.</p>
+            <ul>
+                <li class="lang-text" data-ru="требуется для отдельных видов товаров;" data-en="required for certain types of goods;" data-uz="ma'lum turdagi tovarlar uchun talab qilinadi;">ma'lum turdagi tovarlar uchun talab qilinadi;</li>
+                <li class="lang-text" data-ru="подтверждает качество, безопасность и соответствие нормам;" data-en="confirms quality, safety and compliance with standards;" data-uz="sifat, xavfsizlik va standartlarga muvofiqlikni tasdiqlaydi;">sifat, xavfsizlik va standartlarga muvofiqlikni tasdiqlaydi;</li>
+                <li class="lang-text" data-ru="оформляется в виде сертификата или декларации соответствия;" data-en="issued as a certificate or declaration of conformity;" data-uz="sertifikat yoki muvofiqlik deklaratsiyasi shaklida chiqariladi;">sertifikat yoki muvofiqlik deklaratsiyasi shaklida chiqariladi;</li>
+                <li class="lang-text" data-ru="предоставляется при таможенном оформлении;" data-en="provided during customs clearance;" data-uz="bojxona rasmiylashtiruvi paytida taqdim etiladi;">bojxona rasmiylashtiruvi paytida taqdim etiladi;</li>
+                <li class="lang-text" data-ru="без сертификации товар могут не выпустить." data-en="without certification, goods may not be released." data-uz="sertifikatlashtirmasdan tovarlar chiqarilmasligi mumkin;">sertifikatlashtirmasdan tovarlar chiqarilmasligi mumkin.</li>
+            </ul>
+            <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Xizmat olish</button>
+        </div>
+    </div>
+
+    <div class="expand-content" id="expand-valuation">
+        <div class="expand-inner">
+            <h3 class="lang-text" data-ru="Определение таможенной стоимости" data-en="Customs Value Determination" data-uz="Bojxona qiymatini aniqlash">Bojxona qiymatini aniqlash</h3>
+            <p class="lang-text" data-ru="Определение таможенной стоимости — ключевой этап таможенного оформления, от которого напрямую зависят сумма таможенных платежей и скорость выпуска товара." data-en="Determination of customs value is a key stage of customs clearance, on which the amount of customs payments and the speed of goods release directly depend." data-uz="Bojxona qiymatini aniqlash — bu bojxona rasmiylashtiruvi asosiy bosqichi bo'lib, undan bojxona to'lovlari miqdori va tovarlarni chiqarish tezligi bevosita bog'liq.">Bojxona qiymatini aniqlash — bu bojxona rasmiylashtiruvi asosiy bosqichi bo'lib, undan bojxona to'lovlari miqdori va tovarlarni chiqarish tezligi bevosita bog'liq.</p>
+            <p class="lang-text" data-ru="Мы профессионально рассчитываем таможенную стоимость в строгом соответствии с таможенным законодательством и международными правилами." data-en="We professionally calculate the customs value in strict accordance with customs legislation and international rules." data-uz="Biz bojxona qiymatini bojxona qonunchiligi va xalqaro qoidalarga qat'iy rioya qilgan holda professional tarzda hisoblaymiz.">Biz bojxona qiymatini bojxona qonunchiligi va xalqaro qoidalarga qat'iy rioya qilgan holda professional tarzda hisoblaymiz.</p>
+            <p><strong class="lang-text" data-ru="В рамках бесплатных услуг:" data-en="As part of free services:" data-uz="Bepul xizmatlar doirasida:">Bepul xizmatlar doirasida:</strong></p>
+            <ul>
+                <li class="lang-text" data-ru="анализ внешнеторгового контракта и сопроводительных документов;" data-en="analysis of foreign trade contract and accompanying documents;" data-uz="tashqi savdo shartnomasi va ilova hujjatlarini tahlil qilish;">tashqi savdo shartnomasi va ilova hujjatlarini tahlil qilish;</li>
+                <li class="lang-text" data-ru="корректное определение метода таможенной оценки;" data-en="correct determination of customs valuation method;" data-uz="bojxona baholash usulini to'g'ri aniqlash;">bojxona baholash usulini to'g'ri aniqlash;</li>
+                <li class="lang-text" data-ru="расчёт таможенной стоимости без рисков занижения или доначислений;" data-en="calculation of customs value without risks of undervaluation or additional charges;" data-uz="qiymatni pasaytirish yoki qo'shimcha to'lovlar xavfi bo'lmagan holda bojxona qiymatini hisoblash;">qiymatni pasaytirish yoki qo'shimcha to'lovlar xavfi bo'lmagan holda bojxona qiymatini hisoblash;</li>
+                <li class="lang-text" data-ru="подготовка и обоснование данных для таможенной декларации;" data-en="preparation and justification of data for customs declaration;" data-uz="bojxona deklaratsiyasi uchun ma'lumotlarni tayyorlash va asoslash;">bojxona deklaratsiyasi uchun ma'lumotlarni tayyorlash va asoslash;</li>
+                <li class="lang-text" data-ru="сопровождение при запросах и проверках таможенных органов." data-en="support during requests and inspections by customs authorities." data-uz="bojxona organlari tomonidan so'rovlar va tekshiruvlar paytida yordam berish;">bojxona organlari tomonidan so'rovlar va tekshiruvlar paytida yordam berish.</li>
+            </ul>
+            <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Xizmat olish</button>
+        </div>
+    </div>
+
+    <div class="expand-content" id="expand-timesaving">
+        <div class="expand-inner">
+            <h3 class="lang-text" data-ru="Экономия времени" data-en="Time Saving" data-uz="Vaqt tejash">Vaqt tejash</h3>
+            <p class="lang-text" data-ru="Экономия времени без компромиссов." data-en="Time saving without compromises." data-uz="Murosasiz vaqt tejash.">Murosasiz vaqt tejash.</p>
+            <p class="lang-text" data-ru="Мы берём на себя полное таможенное оформление вашего товара и подготовку декларации в течение одного рабочего дня." data-en="We take full customs clearance of your goods and preparation of the declaration within one working day." data-uz="Biz sizning tovaringizni to'liq bojxona rasmiylashtiruvi va deklaratsiyani bir ish kuni ichida tayyorlashni o'z zimmamizga olamiz.">Biz sizning tovaringizni to'liq bojxona rasmiylashtiruvi va deklaratsiyani bir ish kuni ichida tayyorlashni o'z zimmamizga olamiz.</p>
+            <p class="lang-text" data-ru="Без лишних вопросов, скрытых расходов и рисков." data-en="Without unnecessary questions, hidden costs and risks." data-uz="Keraksiz savollar, yashirin xarajatlar va xavflar siz.">Keraksiz savollar, yashirin xarajatlar va xavflar siz.</p>
+            <p class="lang-text" data-ru="Только точность, профессионализм и безупречное соблюдение требований таможенного законодательства." data-en="Only accuracy, professionalism and impeccable compliance with customs legislation requirements." data-uz="Faqat aniqlik, professionallik va bojxona qonunchiligi talablariga benuqson rioya qilish.">Faqat aniqlik, professionallik va bojxona qonunchiligi talablariga benuqson rioya qilish.</p>
+            <p class="lang-text" data-ru="Надёжное оформление — основа стабильного бизнеса." data-en="Reliable registration is the basis of a stable business." data-uz="Ishonchli ro'yxatdan o'tkazish — barqaror biznesning asosi.">Ishonchli ro'yxatdan o'tkazish — barqaror biznesning asosi.</p>
+            <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Xizmat olish</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="О нас" data-en="About Us" data-uz="Biz haqimizda">О нас</h2>
+            <p class="about-subtitle lang-text animate-on-scroll fade-in-up" data-ru="Профессиональные таможенные услуги с 2007 года" data-en="Professional customs services since 2007" data-uz="2007 yildan beri professional bojxona xizmatlari">Профессиональные таможенные услуги с 2007 года</p>
+            
+            <div class="about-content">
+                <div class="about-text animate-on-scroll fade-in-left">
+                    <p class="lang-text" data-ru="MoyDeklarant.uz — это команда профессионалов с многолетним опытом в сфере таможенного оформления. Мы предоставляем полный спектр услуг по импорту и экспорту товаров, работая с клиентами из различных отраслей." data-en="MoyDeklarant.uz is a team of professionals with years of experience in customs clearance. We provide a full range of import and export services, working with clients from various industries." data-uz="MoyDeklarant.uz - bu bojxona rasmiylashtiruvi sohasida ko'p yillik tajribaga ega professionallar jamoasi. Biz turli sohalardan mijozlar bilan ishlab, import va eksport bo'yicha to'liq xizmatlar spektrini taqdim etamiz.">
+                        MoyDeklarant.uz — это команда профессионалов с многолетним опытом в сфере таможенного оформления. Мы предоставляем полный спектр услуг по импорту и экспорту товаров, работая с клиентами из различных отраслей.
+                    </p>
+                    <p class="lang-text" data-ru="Наша миссия — сделать процесс таможенного оформления максимально простым, быстрым и выгодным для наших клиентов. Мы берем на себя все сложности и риски, обеспечивая законное и своевременное прохождение таможни." data-en="Our mission is to make the customs clearance process as simple, fast and profitable as possible for our clients. We take on all the complexities and risks, ensuring legal and timely customs clearance." data-uz="Bizning missiyamiz - mijozlarimiz uchun bojxona rasmiylashtiruvi jarayonini imkon qadar sodda, tez va foydali qilishdir. Biz barcha murakkabliklar va xavflarni o'z zimmamizga olamiz, qonuniy va o'z vaqtida bojxonadan o'tishni ta'minlaymiz.">
+                        Наша миссия — сделать процесс таможенного оформления максимально простым, быстрым и выгодным для наших клиентов. Мы берем на себя все сложности и риски, обеспечивая законное и своевременное прохождение таможни.
+                    </p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item animate-on-scroll scale-in" style="animation-delay: 0.1s;">
+                        <div class="stat-number" data-target="19440">0</div>
+                        <div class="stat-label lang-text" data-ru="Оформленных грузов" data-en="Cleared Shipments" data-uz="Rasmiylashtirilgan yuklar">Оформленных грузов</div>
+                    </div>
+                    
+                    <div class="stat-item animate-on-scroll scale-in" style="animation-delay: 0.2s;">
+                        <div class="stat-number" data-target="98">0</div>
+                        <div class="stat-label lang-text" data-ru="Удовлетворённость %" data-en="Satisfaction %" data-uz="Qoniqish %">Удовлетворённость %</div>
+                    </div>
+                    
+                    <div class="stat-item animate-on-scroll scale-in" style="animation-delay: 0.3s;">
+                        <div class="stat-number" data-target="19">0</div>
+                        <div class="stat-label lang-text" data-ru="Лет на рынке" data-en="Years on Market" data-uz="Bozorda yillar">Лет на рынке</div>
+                    </div>
+                    
+                    <div class="stat-item animate-on-scroll scale-in" style="animation-delay: 0.4s;">
+                        <div class="stat-number" data-target="24">0</div>
+                        <div class="stat-label lang-text" data-ru="Часа поддержки 7/24" data-en="Hours Support 7/24" data-uz="Soat qo'llab-quvvatlash 7/24">Часа поддержки 7/24</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="Наши услуги" data-en="Our Services" data-uz="Bizning xizmatlarimiz">Наши услуги</h2>
+            
+            <div class="services-grid-new">
+                <div class="service-card-new animate-on-scroll scale-in" style="animation-delay: 0.1s;">
+                    <div class="service-icon-new">📦</div>
+                    <h3 class="lang-text" data-ru="Таможенное оформление" data-en="Customs Clearance" data-uz="Bojxona rasmiylashtiruvi">Таможенное оформление</h3>
+                    <ul class="service-list">
+                        <li class="lang-text" data-ru="Предоставление счетов-фактур на оплату таможенных платежей" data-en="Providing invoices for payment of customs duties" data-uz="Bojxona to'lovlarini to'lash uchun hisob-fakturalarni taqdim etish">Предоставление счетов-фактур на оплату таможенных платежей</li>
+                        <li class="lang-text" data-ru="Подготовка всей необходимой информации и документов для таможенной декларации" data-en="Preparation of all necessary information and documents for customs declaration" data-uz="Bojxona deklaratsiyasi uchun barcha kerakli ma'lumotlar va hujjatlarni tayyorlash">Подготовка всей необходимой информации и документов для таможенной декларации</li>
+                        <li class="lang-text" data-ru="Подготовка коррективных писем и дополнений" data-en="Preparation of corrective letters and additions" data-uz="Tuzatish xatlari va qo'shimchalarni tayyorlash">Подготовка коррективных писем и дополнений</li>
+                        <li class="lang-text" data-ru="Составление грузовой таможенной декларации" data-en="Preparation of cargo customs declaration" data-uz="Yuk bojxona deklaratsiyasini tuzish">Составление грузовой таможенной декларации</li>
+                    </ul>
+                    <button class="btn-more lang-text" onclick="openModal()" data-ru="Подробнее" data-en="More Details" data-uz="Batafsil">Подробнее</button>
+                </div>
+                
+                <div class="service-card-new animate-on-scroll scale-in" style="animation-delay: 0.2s;">
+                    <div class="service-icon-new">📋</div>
+                    <h3 class="lang-text" data-ru="Консультации" data-en="Consultations" data-uz="Konsultatsiyalar">Консультации</h3>
+                    <ul class="service-list">
+                        <li class="lang-text" data-ru="Профессиональные консультации по таможенному законодательству" data-en="Professional advice on customs legislation" data-uz="Bojxona qonunchiligi bo'yicha professional maslahatlar">Профессиональные консультации по таможенному законодательству</li>
+                        <li class="lang-text" data-ru="Помощь в выборе оптимальной схемы импорта" data-en="Assistance in choosing the optimal import scheme" data-uz="Optimal import sxemasini tanlashda yordam">Помощь в выборе оптимальной схемы импорта</li>
+                        <li class="lang-text" data-ru="Консультации по документообороту" data-en="Document flow consultations" data-uz="Hujjat aylanmasi bo'yicha maslahatlar">Консультации по документообороту</li>
+                        <li class="lang-text" data-ru="Поддержка на всех этапах оформления" data-en="Support at all stages of processing" data-uz="Rasmiylashtirish barcha bosqichlarida qo'llab-quvvatlash">Поддержка на всех этапах оформления</li>
+                    </ul>
+                    <button class="btn-more lang-text" onclick="openModal()" data-ru="Подробнее" data-en="More Details" data-uz="Batafsil">Подробнее</button>
+                </div>
+                
+                <div class="service-card-new animate-on-scroll scale-in" style="animation-delay: 0.3s;">
+                    <div class="service-icon-new">🔍</div>
+                    <h3 class="lang-text" data-ru="Классификация товаров" data-en="Product Classification" data-uz="Tovarlarni tasniflash">Классификация товаров</h3>
+                    <ul class="service-list">
+                        <li class="lang-text" data-ru="Определение правильного кода ТН ВЭД" data-en="Determining the correct HS code" data-uz="To'g'ri TN VED kodini aniqlash">Определение правильного кода ТН ВЭД</li>
+                        <li class="lang-text" data-ru="Расчет таможенных платежей и пошлин" data-en="Calculation of customs duties and fees" data-uz="Bojxona to'lovlari va yig'imlarini hisoblash">Расчет таможенных платежей и пошлин</li>
+                        <li class="lang-text" data-ru="Подбор оптимальной товарной позиции" data-en="Selection of optimal commodity item" data-uz="Optimal tovar pozitsiyasini tanlash">Подбор оптимальной товарной позиции</li>
+                        <li class="lang-text" data-ru="Экспертиза спорных товаров" data-en="Examination of disputed goods" data-uz="Munozarali tovarlarni ekspertiza qilish">Экспертиза спорных товаров</li>
+                    </ul>
+                    <button class="btn-more lang-text" onclick="openModal()" data-ru="Подробнее" data-en="More Details" data-uz="Batafsil">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Services Section -->
+    <section class="free-services" id="free-services">
+        <div class="free-services-container">
+            <div class="free-services-header animate-on-scroll fade-in-up">
+                <div class="free-badge">
+                    <span class="lang-text" data-ru="100% БЕСПЛАТНО" data-en="100% FREE" data-uz="100% BEPUL">100% БЕСПЛАТНО</span>
+                </div>
+                <h2 class="lang-text" data-ru="Бесплатные услуги" data-en="Free Services" data-uz="Bepul xizmatlar">Бесплатные услуги</h2>
+                <p class="free-services-subtitle lang-text" data-ru="Мы предлагаем ряд бесплатных консультаций и услуг для наших клиентов" data-en="We offer a range of free consultations and services for our clients" data-uz="Biz mijozlarimiz uchun bir qator bepul maslahatlar va xizmatlarni taklif qilamiz">Мы предлагаем ряд бесплатных консультаций и услуг для наших клиентов</p>
+            </div>
+            
+            <div class="free-services-grid">
+                <div class="free-service-card animate-on-scroll scale-in" style="animation-delay: 0.1s;">
+                    <div class="free-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="lang-text" data-ru="Бесплатная консультация" data-en="Free Consultation" data-uz="Bepul maslahat">Бесплатная консультация</h3>
+                    <p class="lang-text" data-ru="Получите профессиональную консультацию по таможенному оформлению" data-en="Get professional advice on customs clearance" data-uz="Bojxona rasmiylashtiruvi bo'yicha professional maslahat oling">Получите профессиональную консультацию по таможенному оформлению</p>
+                    <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Получить услугу</button>
+                </div>
+                
+                <div class="free-service-card animate-on-scroll scale-in" style="animation-delay: 0.2s;">
+                    <div class="free-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h3 class="lang-text" data-ru="Расчет стоимости" data-en="Cost Calculation" data-uz="Narxni hisoblash">Расчет стоимости</h3>
+                    <p class="lang-text" data-ru="Бесплатный предварительный расчет таможенных платежей" data-en="Free preliminary calculation of customs payments" data-uz="Bojxona to'lovlarini bepul dastlabki hisoblash">Бесплатный предварительный расчет таможенных платежей</p>
+                    <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Получить услугу</button>
+                </div>
+                
+                <div class="free-service-card animate-on-scroll scale-in" style="animation-delay: 0.3s;">
+                    <div class="free-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="lang-text" data-ru="Консультация 24/7" data-en="24/7 Support" data-uz="24/7 yordam">Консультация 24/7</h3>
+                    <p class="lang-text" data-ru="Круглосуточная поддержка и ответы на ваши вопросы" data-en="Round-the-clock support and answers to your questions" data-uz="Kuniga 24 soat yordam va savollaringizga javoblar">Круглосуточная поддержка и ответы на ваши вопросы</p>
+                    <button class="btn-get-service lang-text" onclick="openModal()" data-ru="Получить услугу" data-en="Get Service" data-uz="Xizmat olish">Получить услугу</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directions Section -->
+    <section class="directions" id="directions">
+        <div class="directions-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="Направления импорта и экспорта" data-en="Import and Export Directions" data-uz="Import va eksport yo'nalishlari">Направления импорта и экспорта</h2>
+            
+            <div class="directions-grid">
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.1s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/cn.png" alt="China Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Китай" data-en="China" data-uz="Xitoy">Китай</h3>
+                    <p class="lang-text" data-ru="Основное направление" data-en="Main Direction" data-uz="Asosiy yo'nalish">Основное направление</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.2s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/tr.png" alt="Turkey Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Турция" data-en="Turkey" data-uz="Turkiya">Турция</h3>
+                    <p class="lang-text" data-ru="Популярное направление" data-en="Popular Direction" data-uz="Ommabop yo'nalish">Популярное направление</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.3s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/ae.png" alt="UAE Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="ОАЭ" data-en="UAE" data-uz="BAA">ОАЭ</h3>
+                    <p class="lang-text" data-ru="Растущее направление" data-en="Growing Direction" data-uz="O'sib borayotgan yo'nalish">Растущее направление</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.4s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/eu.png" alt="Europe Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Европа" data-en="Europe" data-uz="Yevropa">Европа</h3>
+                    <p class="lang-text" data-ru="Качественные товары" data-en="Quality Goods" data-uz="Sifatli tovarlar">Качественные товары</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.5s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/kr.png" alt="Korea Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Корея" data-en="Korea" data-uz="Koreya">Корея</h3>
+                    <p class="lang-text" data-ru="Технологии и электроника" data-en="Technology and Electronics" data-uz="Texnologiya va elektronika">Технологии и электроника</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.6s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/us.png" alt="USA Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="США" data-en="USA" data-uz="AQSH">США</h3>
+                    <p class="lang-text" data-ru="Американские товары" data-en="American goods" data-uz="Amerikan tovarlari">Американские товары</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.7s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/ru.png" alt="Russia Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Россия" data-en="Russia" data-uz="Rossiya">Россия</h3>
+                    <p class="lang-text" data-ru="Партнерское направление" data-en="Partner Direction" data-uz="Hamkor yo'nalishi">Партнерское направление</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.8s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/kz.png" alt="Kazakhstan Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Казахстан" data-en="Kazakhstan" data-uz="Qozog'iston">Казахстан</h3>
+                    <p class="lang-text" data-ru="Региональное сотрудничество" data-en="Regional Cooperation" data-uz="Mintaqaviy hamkorlik">Региональное сотрудничество</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 0.9s;">
+                    <div class="direction-flag">
+                        <img src="https://flagcdn.com/w320/in.png" alt="India Flag" class="flag-image">
+                    </div>
+                    <h3 class="lang-text" data-ru="Индия" data-en="India" data-uz="Hindiston">Индия</h3>
+                    <p class="lang-text" data-ru="Текстиль и специи" data-en="Textiles and Spices" data-uz="To'qimachilik va ziravorlar">Текстиль и специи</p>
+                </div>
+                
+                <div class="direction-card animate-on-scroll scale-in" style="animation-delay: 1.0s;">
+                    <div class="direction-flag world-icon">
+                        🌍
+                    </div>
+                    <h3 class="lang-text" data-ru="Другие страны" data-en="Other Countries" data-uz="Boshqa mamlakatlar">Другие страны</h3>
+                    <p class="lang-text" data-ru="Работаем по всему миру" data-en="We Work Worldwide" data-uz="Biz butun dunyo bo'ylab ishlaymiz">Работаем по всему миру</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <div class="animated-bg">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="partners-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="Наши партнёры" data-en="Our Partners" data-uz="Bizning hamkorlarimiz">Наши партнёры</h2>
+            
+            <div class="partners-grid">
+                <!-- Первая строка - 5 партнёров -->
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.1s;">
+                    <img src="https://www.joc.com/images/phoenix/5204313_1.0.jpg" alt="Flexport" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.15s;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnS0Sx2kno_JUu6F_9z-E5PJ9NPwJlQV1ngg&s" alt="CargoX" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.2s;">
+                    <img src="data:image/jpeg;base64,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" alt="Project44" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.25s;">
+                    <img src="data:image/png;base64,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" alt="iContainers" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.3s;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSay6F7uKs1aXn77yDwfErnT3_BDa_csJz_gw&s" alt="Global Sources" class="partner-logo">
+                </div>
+                
+                <!-- Вторая строка - 5 партнёров -->
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.35s;">
+                    <img src="data:image/png;base64,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" alt="Brand Factory" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.4s;">
+                    <img src="data:image/png;base64,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" alt="Faire" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.45s;">
+                    <img src="data:image/png;base64,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" alt="DataRobot" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.5s;">
+                    <img src="data:image/jpeg;base64,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" alt="C3.ai" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.55s;">
+                    <img src="data:image/png;base64,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" alt="H2O.ai" class="partner-logo">
+                </div>
+                
+                <!-- Третья строка - 5 партнёров -->
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.6s;">
+                    <img src="data:image/png;base64,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" alt="ThoughtSpot" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.65s;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATYAAACjCAMAAAA3vsLfAAAA0lBMVEX///8MK2AgzZoAIVsAAFAAJl0AJV0AHloAI1wAClMIKV8AIFsh1J0AElUAypMAGFfa3OJfbY0AD1QAHFnj+PG8ws5ve5eAiqHy9PcrQG0+TnUq0J8KEVsAAE0AFVZqdpNUY4bLz9kXMmWiqbseuZIaoYg3SnQTZnIXin/V2eDq7PDEydNX1q2Ol6ynrr7k5+yR4saD38DM8eRGV3wbNme0ucaMlapxw7C57Nudm7McIWPx/Pig5s4PR2gAAFcQTmpk2bIAf3a90dQAAEcAV2gAZm7iNCTbAAAJwElEQVR4nO2afX/iuBGAUSy/yWsMNjg2ORswV67AAnsLpNdurtftdr//V+qMJBtDSCBn0mx+neePvICx5MfSzEi41SIIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAI4sp8+tv8rbvw/vjtpv3h69/fuhfvjN7H9s3NzYev/1i8dU/eEV9+RWno7a/ZaP3WvXkvPLQ//OX30ts/+W3y1h16D3y+A2s/2X+U3n4KvNVb9+mHB4MaWBOs5k2E6fit+/Vjg0FNWmPM/r1demMm71Ix8iQP7b01xlef996YwZdv3bsfFAhqN3Vr8ErNmwjErmEDSfJEclne3y+vnHeebOvK9P4lHdWtHXpjwh3MGjQw51GUp6fe6WRRlPUbnPoRCbQVFNc84xP0tKADa63W3U3NG7Oyg+p3tRlVxGdb6GRgnp18x2XMP6ttWhQFG11wKcCaQ1v5Zcc2onc41ib6Za2t9HZ4cd3AqXDPtoByGmibcQHwy4pv1MaCiw5tRq99ylqlTXs70uawivO3dpZZlmOdeueUtg4Pcl7P3rc2NhNdlpjW0JZ1/k42p9c+ZW2vTXk7oY1LsvOBJBltNoOTc/mUtjG8xju1F0wBY5WJ7WWXA21thpcd2ohe+5S1mjbp7bE2foW2T2oLGXNr2kCjYBa81iQrXZ9e+zgbtLCDUtvHKp+e0aayfn9XrSlm/f6immnz2WxWVQXr2awKU6W2zmJcHTz2D7XFHjNuuxazb2utyZ+LqrnZblGev95WMt71F4flyGy3242vUaH02sdjrZuNlbb2Q1WH8Ge13fMgW8+3rv9NHpbcBq7vhzzV6XfL3Uxd9Dz2MtflRZqm267WtugXPAz5QKoaRZbM3I4RaJG2gEN2ORNm2ZqXh6PWvOuGvuthe/fQWujq2DeFtlRAWI/gCD/MHcOwVUJaD3M3z3PXHzZf+fS0tbyyFohwrLR9quq3rwcV77E2iNrheAsvBniStRUJZsLlm/xevp2aeqyMuS2E44ACIE+kNmsUyvYtjmOnMMtUo+NbP2SCtxI4xtVjK8mYNR37Bn5KZIs1C9RdV94GJvOktgV3hLAjId/McIDtuKHPbQeNZ3yPy/trDipr0JtwprW1ftXx7d/PavOYSPE0qC1xLDjBdGPDQarcK7UlLui0h128ThFwpQ3ilmmgLBOHk1CjzfG8rFM2ZUCIH1naBla0TBSeEAYeKQphCseTatZ1bdiWVSyXWzhK+N9A2xjKR2a4oQv9wnvWUNvPnrwhQVxZg24Lre1Bj7b/PDtJQRvE7SgyvsGgjCMmBFxzsnGYmda13QeQEKG/a/g9Xe3UJIVpmsZpDr9DaGMSQxhjzjCO1WZfkqvoB7O0LHUSrGiF58QbH70x0x3GMLxZdF/Xtgx08t2aoljgQMXL9ONOMhtFMN6aZtteW3vzsbVuLicMS1RsK6398ji2mVNJutPaWAhm5uo2h3KQ4cySVWqpbWOxYKc0ixCtSG0uZqIJtKsm8gwzaZU0dpgg9LnUWaU2FnTxQ3iLnQIO7viCOZu6tpGjIgYeJDuxgjNFKsLC0BW84XCDTLr3VllTmfSutBacqNtMC8mXWpuh5xBGb13LQffyVU0b/A5lUFkFEAu1NlvFv62Qk/G4AIFTqJerP6Q2ayT/jKp6Dt5WYabSBm3vdH/kH+jKViedYSZquD2BddvPjvRmFzJIWEVyWLf9Epwqd4VE3lLU5urbB39bmz7k+V0fehosa9rw/4m+yEqbrsdGziltcuj29dULXmkLVK1UCOapATQ0jrRB3aLeghNLRT7OfX3WqJzSjbRV3kRlrb5KAGsntAmVlKKV1lYuBCGiMSuXWKwaZfI3zEThgK6JrydJTVvXOKVtBaPfU39CHlEjRGqblNrsJ7T1IQGEk2R+C2fAtRp+qlqgQee981sQZ7VV3uQMlUXN3YG1M6uEurYpZEUrKOH10ZbATBQ+c/A2yKs9q22A2TLdIhjGRpdrwxHNgjC0VdBtzfefup62mzK+QSGhJtvdgbUXaIPuWptJybKeEjAnWDCxoUaTAs5qw2sto4GszZLLtUFbhgmf87g87cFos0QViptpA2+27Fl5ursDay/QFht6VOwptS19ZmyMMAwGOh6f04ap0jQ00D2ZYC7TBm158cDytrGukv0qkbTW0GzQcKu/V36hrL3JOqSq17S1F2jDS/UPmyi15cKcwhDar2zOaYMPmtNYk+oa4zJtOEAPOrHBInxedTFs+NRBqa3yFsaPrb1AW4c/SlNaG24hOgfneUpbro7CD4TVB3a14H5WG6zAYE6u5/PqJqErSx7SCa6wA1xpq+JbGD+y9gJtrQG86coafz0pRvhKOdpwUeVzP8jcgfri5ZQ2uT9rT1bdpLWM6ju1pa7LRhv2InLllmB3XH6cOdHtZMhxujf9Om6vDbwZalX//cORtZdom8nrDqModwPvQNvCLtO1Gbj9J7TBagjrmgBW31UJrMCSdnqptnVatsUctf2yy3Ap7EW4nvdOfiP0J7UdeqtbO9Zmm2ZW1xaYZlj9V+40QLWRK22OGcgCBC7Fdl0XqwKBS/UOF4KrkN31hF4n9jO1abHGLxHcWrsrX36lkGRC6O0a0xR6vTS0hSO1TR0zGmptAY61HM7GZQqacF0tmOG08Zbbl/aBN6/0dmDN4wcPNSy3aTqo/T+B/zf7f9fDIPNxw43FcnE5TNMt5kDmsPy+M5uNYU0vx8TcKgqh1p+3ZmHqidO3MvjsprXziqK+5Z44RWFDJE+LwlABvcsKSwlcWoWQuSyGtvAlqD/9JW6f9q1yudrqDD0ehm42vcajLdXDWfW8kH//vrf2J55o6CwWtR1bxTKvSoChI+fbU4wXi4ZPicGCxNI3EiLk/ouI9Xgxu9bXz72P9fgWqfqt3NJjV3t+Bkp+vZZEbdbm+aObAStRWw9eWJ0+d4ua8PmufeytJAqu9bQWLLu0qz7Wmw3X0s8D2kQhk80urDaMXoGH9vE8VVmIX69FXFVbfDMcpvh9M3/VJ5lWuJfp5tttDo2a7uu1tQ9xZT7FoHbVJ1FTH5f5hmMyEbmv/OBcnOFF4FLW8p1X/a6wCnEftmobyd9e+bnnScrdEHIZ396/+mNB467g+C2ZvXn1R0J/u1HiCvl0YDA5/4mXkswgxV4tl51rbN3p/G+a+iSruAL3dmJ64PlyvuDTboXlDjrnjyVqQDHimVd9Vu//hAd6WpcgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgiLP8F9Aw3R3bFGB7AAAAAElFTkSuQmCC" alt="FreightAmigo" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.7s;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXkpdLen8UwjIG5YvJ42ZY7KVHgLHvIlBdyQ&s" alt="ShipBob" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.75s;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxEPDxANDxAPEBAQEA8QEBUVFRASGBcVFREXFxUXFhUYHSggGBslHRYXITEhJSkrLi8uGB8zOD8sNyotLisBCgoKDg0OGhAQGy0lICUtLS0tKy8tLS0rLTAtLS0vLSstLS0tLS0tLS0tLS0tLS0tLy0tLS0tLS0tLS0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAbAAEBAAIDAQAAAAAAAAAAAAAAAQIHBAUGA//EAEMQAAEDAgMEBwYCCAUEAwAAAAEAAgMEEQUSIQYxQVEHEyJhcYGhFCMyQpGxctEzUmKSosHC4RWCsvDxQ1R04hckNf/EABoBAQACAwEAAAAAAAAAAAAAAAABAwIEBQb/xAA3EQACAQIEAggGAgAGAwAAAAAAAQIDEQQSITFBUQUTImFxkaHRMoGxweHwFEIjM1JykvEkNGL/2gAMAwEAAhEDEQA/ANYrdKChSCoCoC2QCyAWQEsgCAiAhCAiAhUAxKAFQDEoSRAQoCKAYlARAQqARAYlQCICFCTEoCIAgO1CtMSoCoChAVAEICEhAQoCICFAYlAFAMSgIgIVAMUJIUBFAIUBigIVAIgIVAMSgIUJIUBigCA7UK0xKgKEBkgKEBbIBZARARAYlARAQoCICFQDFAQqARCSFAYqAQoDEoAVDBiUBCoBiUBChJEBCgIgO2CtMQgMghBUBkEBVICAxKgEQEKEmKAhQEUAhQFmicxzmPa5r2mzmkEEHvBWMZKSutiWmnZnzKkgiAhQkxUAhQGJQEUAhQEUAxKAiEkQEKAiA7YK0xCAyCAqAoQgyUgIDEqARCSFAYoCFARQDYHRrsuJD/iNQ28bD7hp+Zw+c9w4eF+S5PSGKtenH5+3udHBYe9pv5e/sdl0lbONqIv8Rp2+8jb70N+Zg3m3Mbx3XHAKjAYpQeV/C/R+zLsZh3JXW69V7o1Tddw5BEBChJioBCgMSgBUAxKAigGJQEQkiAhQEQHahWmJUBQgMkAQFuhAugIhIQGJQEQEKA7DZ7CnVlVFTNvZ7rvI4MHxH+XiQtfE1uqpuXHh4ltCl1k1Hhx8DaW3OMtw+kbBBZri3qoQNwsNXW5D8hxXCw1D+RVs9lq+/wD7OxXq9RSut3ov3uOt6LdpPaY30cri58Vm3cblzD8LiTvIIIPgOasxlFU6l4/DL0ZGEqupTs/ij6o8Ftlg/sNdJABaKS8sHIAk5mf5TfysulgqznTtLdaHPxlFQndbPU6ZbpqEKAxUAhQGKAhUMEKAhUAxKAhQkiAhQEQHaBWmJkgKgKCgKgCAIQEJIUBEBCgMSgNldEWH2bUVhGukTPLeR5u/hXF6Tq9tR5K/zeiOpgKfZcubt8lueN6SMXM9ZIAezH7lnl8Z8b6eQWxgafV0E+MtfYpxtTPWa4LQ63YesNPWwz3s0uETu8PIGvcDlPks8RR6ylLzXyMcNV6utHv0fzNhdMtCJKSCsb8UT23P7L+yf4g0rQwU7VPFfQ38bTvT/wBr9GavifmAPNdtO6OKylSCKAQoDFAQqARAQqAYlAQoSYoCIAgO0VpiUICoCoBdAW6AXQEugIgCAhQEQG49g2CLCWH9bM8+Ze78l5vGvNWn4peh38HG1OHg36mi8QqDLK553uJd5uNz6ldtq3ZXDQ4t7689TltblaAN4HrzVyWlitvibi2u99gcjj/27n/uhrgvP0uzUj4s9HW7VOfgmaToXaEea7sHwPPSOQVYYhQDFARAQqARAYlQCICFCTFARAEB2isMQpBQUBUAQBAEAQBAQlARARQDcmw7xJhLGjg0t+hc37rzuLVq0/FM9BhNaVPwaNDxxkSZXbw8h3iDr9l208zucRrLodg/cVcVPVG4drfdYI9h/wC2LfNwyj7LgUlmqx8Wz0lbs0p35WNH0Z7Xkf5LtQ3PPy2OYrDAhQEKAiAxUAiAigEQEKEmKAiAIDsgVYYmSAKQLoC3QAbwOJ0A5nuUPQHfYbsfX1FjHSyBp+Z9ox9Ha+i1Z42hH+1/DX8F0cPUlwt46HdQ9GFYfjlpWd2dzv5Ba8ulKa2i/RfcvjgZvdr1ZlL0XVYHZmp3Hldw+wKhdKRf9X5ol4GX+peTOlxHYqvp9XQF4G8xkO9NHeivhj6EnZu3joVywdVapX8Dz72lpLSCHDQgggjxB3LbTT1RqtWdmYEqQbN6JcQDo5aRx1DrjwfqP4gVxukKdqqlwat5HZwE70nHjF3+TNfbbYWaTE5WWs2R/XM8JCb/AEdmC2sJPNBd2hqYynkqO2z1Ptsthxqq2CAC4Lw934Wm5+ug81fiZ5Kbfy8yrC089VLgtX4I9x0u4iGUzaZp+M/wxjf+9b6rnYOF6jlyR1MfPLRUeMn+fY1HRjteRXThucWR2EED5HBkbXPedzWguP0CzlJRV2IQlN5Yq7PTYd0e10wDnNZC08Xu1+g09VryxUFtqbsOjqj+Jper8kdqzovf81bED3Mv65lX/M7vU2F0WuMn/wAfyfKbowm/6dVA/kCMv9SlYrmvUh9F8pecfydHiew9fTi5h6xvOM5vQ2P0Vqrwfca8uj6y+G0vB/Z2POyMLSWuBa4bwQQR4gq299jTlGUXaSszAoYkQkxKAiAiAIDsVYQUFCC3QFQBAbC6JcTgbK+mkjibM67opS1uYji3MRw3juvyXH6UpzVql+zs1wXJm/gpRd42138e49VtrtJLh7BIYTI0nLmzWa08MxsbA+HLmFzMNh3Xm4Snb7+Bv1qqpQUoxua7q+lGqJ7DYWj8L3H65mj0XTj0XQW8m/Q0n0hVeyS9Tjs6Ua0HVsDh3teP6lL6NocL+a9gsfV4peX5O9wnpcFw2pgc1vNhEg8S0gW8rqiWAnH4JX7mXxxsJfHG3ej1D4MNxqLOwxudawc3suad9j8zT3HRUwnVoSsuy+XBmxKFOtG77S58Ua32p2UmoHEm74SbB9t3IPHDx3HuXYw2LjV7L0ly9jl4jCSpdpax5+5w9m8WNHUsm+T4ZPwnebdxAPl3rPFUeupuK34GGEr9TUUnts/A2Jt/gIxSjbU09nVEIzttbtAjVt+/QjvA5rlYerkld/P3OvisPnjlXiu/uOD0XUkcVLJXOPvpC6Ox0MbWEgg33G4P1HJXYytmkkuH3MOj8PaGbnv8uH3Z4LbjGva6h7wewDkj/C06nzPpZbdCl1VNLi9WaGMr9dVbWy0Xv8zk7DbIS15MhvFTg2dIeNt4bf7/AHUTrqnotycPhHV7UtI+r8Pc2TJVUGDxZYwxp52zPcfDefO/ktP/ABK0tNTsZaWHh2uyuXF/dnj8X6SZXE9UwNHAvJJ/dH5rZjhF/dmnPpVLSlD5v2R56fbqtJ0lt4Bv87qzqKS4epQ+k8S+KXyRYdva5vzsd+IH+khQ6EDOPSmIW9n8vY9xsLtXVV8jo+pDWtHbkDjlvytbfbXiqZU8uzOjhsUsQm5wtbj38jj9KOK07WiDJE6ZwsHFouAN7/2e7+xVlFdq5X0hONOhlkryltfWy5ms7rcPOkKAhQEQEQBAdiCsyApAQgt0AugPpBO6NzZGOLXsIc1w3gjcVjKKknGWzJjJxd0bl2bxyDF6V0E4Z1oZklYdxuLXH7J4HhuXm8RhpYeaX/F/ZnboVo1Y3819zWG1+w0lBI5wzOpiey7iz9l/5rqYTERrdmWkuXPwNHE4d0+1HWP08TzwpGd581v5EaeZkNI3vHmmRDMfShfNSyCemlLHt8r9x4EdxVVShGas9SynWlTd46G39kNqYsVhdSVLWsqGss5h3Obuu2+9vdwvy38etQlSf0Z2sPiI1U2t+K595r3a/BBRVPVMN2SAujG8jUDL37xbxXUwmI62Ha3W5zMbhupmsuz29j1Ox2J1NAGxVkT44XENie62mbcx4vdoPC9uXJaeIjCcnKk7vijo4R1IU1CurLg+Xc+XcdhtdsyZ2SVVBIY3yC88QcWtk01PLNbS/HceajD1oRtmV16r8GeJw1WV1B2fHlL8/U11sls2/EawxOa5sUR99wtY2ydxNjflY9y269ay03exzsLhc8nn2W/sbJ2t2ijw6BtLTNaHZcsbRoAALZiBuA4D+5GpRpOrLu4s6uIxEcNDM12nsuX76mn8RxF8r3Pe4ved7j9gOAXSVoLLE4E5zqSzzd2cNkRdr6lFFsxvY+wphxufRZZURmO/2Z2Slr3jI3JCD25DusN+W+8+gVdScY+JuYbCTrdp6R58/DmbExPEKbB6QU8AF7WAG97vy4kn8gtWMXN6HdlKnhaanNWS+GPF/vF8DTmLVb55nTSOLnuNz3DgB3LaUVHRHna1edabnPdnzp28VnFFLPqVkYmKAiAIAgOesyCoQW6AKQEAQHIoaySCRs0LyyRp0I9QRxHcq6lONSLjJaGcJyhLNHc2ns1t3T1rRS1YbHMRlyn4X/gcd/4T/dcGvhJ0XzXPijtUMRCr3PlwZ8Ma6N4ZiZKOQRE65N7fJt9PIkK+h0hUjpLtLyf5K62BhLVdl+a/B5Cu2DxCI/oBIObHD7OsVvxx1J73XijSlgaq2s/B+9jiM2RxBxsKSX6xj+pZ/wAuj/q+vsY/wq/+n1Xud5hHR3XB7JXyx0ZabtdmzPHOwGm7vVFXF05Rta/jobFDB1YyzZreGr9j10GF0dATVzPNRUNb2qictJaNfhBs1g1PLfxXOdRvsx8kdWNC3bm/m/3T5HhNtdsmVgdDFrHcZ3njY3AbfeLga92i38Jh3F9ZPc5+OxkZw6mntxfsdRhO3FRTsMNuuZuYHOIcOFrjeO7f38FNXDQlK60McN0jUpRytZuV9zZmDxNw3Dn1M2Vss3WVE5A+Z3afbu+UdwK1H2np4I6sIqCvPh2peLPK1Ow1VXs9tNTC2WcB/Vuv2GkXa3NflyG+621XjBZIrY59TBzrS62crN8LaJcFc6j/AOMMRadY4nj9l5t6tWca0eKZrvAVOEo+f4ObT9G1cT7wwRDmXE+lh91Y8THgiY9Gzb1kvldnoMO2Do6az6qU1Dh8vws+nH1VEq8nsdCh0ZBa2u+/by9z57QbcQwMMFK1pI0Abo0W/WP8vskKUpavRFlfG0cPt2pei/eSNX4nib53mSRxe88eAHIBbKtFWicGtWqV556ju/3Y4UUd9TuRK5U2clWGJCgIgIgCAIDnLMgqAIAgLdCBdALoDCVgcLHUKGrkrQ7LDNrK+iGVkpljG5sl3ged8w+tlo1sFTk728jdpY2rBWvfxPTUfS3IBaSnPiyT+RA+61XgZL4ZG2ukIP4oHLf0ttI/RTeZ/IlFgp8Z/Uy/n0VtB+h09f0lzSXEbGR+OZ59A31uroYGmvik36Fc+lKm0IpepdhawYhX9XVEynq3OiD8uXNcDRu4GxOvipxEVCmlTVtScHWlVquVZ3stOXkdZ0j4K2mrG9SzK2cXDQPnBANgOeZu7jdMLUbjZ8DHpGgoVFKK+L6nCw3B5oZYpZaapLWyRvd7qXcHAngtlyg4tKSv4mtSo1I1IylB2uuDPS9Im0zainbSxnkX6Ob2Qb21A1Jt6rWw9CXxS4HR6QxVNR6um9W9dLfU81hm2dbTtbG2Rr2NADQ8E2A3C4IJ81ZKhBu5q0ukq1NZdGu9Hbs6S6j5oYz4G33Cx/jLmbK6XlxgvNnzqOkapdo1rGeRP2IWSoQ43MZdL1f6xivNnQ4jtDUVF+ske4HeL5R5gb/NWxjGOyNKtjK9ZWnLTktF6HVvkLtPQLJts1bJGccHE/RSohs+4WZiQoDFARAEAQBAc26zILdAEAQBAVCAgIhIQHzfA08LeGixcUybnyFDmIa3MSTYADMSTwAG8rFwS1uZJtuyR7fZ3owkls+re6Nu/q2WL7ftO1DfXyWhUxSvanqdOj0fpmqu3cdzWYLR4dWYe+lsyXrxG4B7n5muY4XNydQSNe/wVcJTnGWbXS5tyo0qU4OKs27eKaZyOkqrFLNS1mTP1c5FtPhkY/d37vosKcMzlHmWVqvVQp1Gr2dvNEoOkiCYtjbTyuedzQxznGw10Y4kqz+PJK7sYxx1CbsnK/hc5p2iwyqJgnDWP+EskaQb8skgDljkcdbeReqsJ9nMn3SVvqdbi3R3TStdLRuDCRewu5nmw6t8tFdTrSjvqa9fo+lPhkfoa5xfA5KV/VzRlp4EXLXeBW3GUZq6ONiMPVoStNfPgzrzTjmfRZZSjMUQN7ypyoXMgAN2ikgIQQoSRARARAEAQBAcxZEBAW6AXUgXQFugF0BLoBdAZwROkc2NjS57yGtaN5J3ALFySV2TGLk1Fbm2dmNmocNhNVUuaZcpL36dnS5ZHfd3u/4XIrV5VnZbcFzO/hsNGgv/AK4vgv31PL7U9IMkuaKl91CNM3F3gD9z9AtmlhElep5GpX6Qd7Uf+T3+XI8rs9UvmxCluXOLqiIlziXONnXNyfBXVpJU2ka2FTliItu7ue76Zn+5jbxMsXpG5amHX+I/A6mPf/ir/d7nmuiQgYkM1rOhe3+Nh+wKvrq8b95pdHP/ABHzysdLFPlrGOt8UZaf8p/9ljh9mi/paPahPmjptn9pquhc10T3OjHyEki3cd7fsrZUlLU1cPjqlLsvWPJ/bkbToa6lxumcMo6wD3kegIPNvI+Hktezi78TtwqUq9Oz1i9091+8Gay2gwZ9HMY3atNzG7mPzW7TnnRwcbg5Yadt09n+8UdWszSMSgCEmJQEQEQBAEAQBAcu6yIF0BUAQBAEAQBAEBsjowwEBjsQmFrhwiv8rBo547ydB/dc3GVcz6tbLc7PR1DLHrGtXov390Og6QdqTUyuhYbQRHLYfM4Hd3gH6m55K3DUVBZ5b8O4ox2JzPqYPRbvm/Y8MSXn/eiv1bNHY9p0YYR1tex51ELS9x4AuGUfdx8lViLKFuZu9HxbqOfCK9Xojl9LuICSZkQO7M8+Zs37OVeGjpKRs9KSyqnS5K7+h5jY6t6irhmJsBIGu8HAtP8Aqv5K+cc0GjRwlTq68G/Dz0Pd9L2HdZDHVtF8pDj4O0d/Fb6LWou0vE6+PpZsP3wfo/1Gs4D2R/vit6Ox517nOwjEJKSdlTCcr2nXhmHEFYzgpIvw+IlRnmXzXNcjaO0FLHilC2oitd7c7f2ZAO0O7f8AQkLWV4SPSunDF0XT56xf09mahNwSCLEEhw5EGxC207nlJRcW0wpIIUBEBEBEAQBAEAQHJWRBUAQFugF0AugF0AugPtRUxmljhb8Uj2MHdmNr+W9Yzlli5cjOnBzmoLizbe2VaKDDRFF2S5rY47cABlb9LOd/lXIoQ6yor+LPQ4ioqNKUo8FlXi/ZGkJn5jYbhoF1JO7PPLRHKgitZoBLiQNNSSdwCzSstTHVuyNw7L4a3C6B0stmyyAvkJ4aajwaNP3lza1R1JXXgj0mDw6pQyy4ayf2+RqPaLEDUzvlN+064vwaNG+nqVuRhkionExFd16sqnPbw4HGp29nxuVbHY1mbf2WrmYnh5pZbOka0xuB46W/iFvO4WlUhllbyPT4Wuq1JTev9Ze5qzE8MfRzvp5AdDdh/WbwK2qU8yOFjMNKhUyvbg+aOKrDUNhdFuIZm1NE43AaKiMeBs8fQ3VFWPE7vRNbTI+D9H+beZ5LbOj9nrngfDIA/wA9x+1/NTTfAp6Yo5K+Zf2V/c6gq45JEBEBEAQBAEAQBAcm6m5AUgIAgCAIAgCA9J0eU4fiMRP/AE2Sy/RuUerlrYx2pPvN/o2GaunyTf2+52/THWHrYoAdGtP1DWgfd618IrZn4I2ekpdmEed37GvcOp3SvDGNc9x0a1oJJJ7luJpas5ajKbyxV2zbGxuxzaQCtrLdYNWN3hvhzd37hwuVqVq+fRbfU7eDwPVu71n6L8nndv8Aav2hxgiPum6PI3G25g7uf/N7KFK3bl8inpDFq3UUnp/Z8+48CLud4q7dnK2OYFYVnZYBjD6OdszLkbnt/Wb+fJYTgpKxt4PFPD1M26e6NmYlQU2NU7ZGOAltdjuN+R5HmOPitZXiz0FWlSr0ucXs+Mf3ijVuL4TNSSGKZhab2B4HwP8AJbUZKR53E4WpQdpbcHwZ2vR3OWYnTjhJ1sR8HRu/mAomtC3o+WWt4p+/2OX0pw9uCTucD5gW/wBJVUTr9NQvTpy72voeNY64BV62PNsqkEQBAEAQBAEAQH3UkBAW6AXQC6XAugF0uBdLg9j0WgGtkPKncPq9n5LTxnwLxOp0Uv8AEl4fc9btVsMcQrDUTSmKFt2hoABPbcb5jwseAK14VXBNJcTdq4eFZxbeytZH1jGG4PGerEYdxcdS4+J7T/D0ULNUemv0NhQp4eN5WgvVngtq9tpaq7GExxbuTnDlYfCO77blt06Cj2pas5eJ6Rc11dFWjz4v2PGSPLj9grW7nNSsfeGPKO871mlYxbuZ3UkBAc/B8Zmo354TofiYfhd+R71hOGY3MHjZ4aXZ1T3X7xNjYbtTR4lH1FQ1pdaxY+wcPwu4j6qizR6KjVo4mNqb33i/bj8hh+xcENZT1lNPlZFK17o5OWt8rt3Hms8zaszXl0bGE88E13br3Xqed6Uz2YfxD7PUFnTP/rw/3P6HhIDp5q2Gx5dmazICAIAgCAIAgCA+yEBSCoAgCAIAgCA7bZrGzQzOmDM5dE6MC9tS5pvex5FU1qXWK1zbweJ/jzcmr3VjkYzt3WS6Nc2IH9UXP1Onoqf40I76m1LpStJWglHwPMzVr3nM9znOO9ziXH6lXrRWRz5yc5ZpO7Pk1hdr6lLNmN7HIjjDfFZpWMWzNSQRAEJIgMHsvruI3FYtXJTaOzw/aisptBIXt5Pu713/AFVbjY6lDpbEU1ZvMu/33JtHtG6ubHnZlcwm9iCDppwHeoMsd0j/ACqcY5bWbe9zqYNx8VZDY5TPoszEIAgCAIAgCAID6oQEAugLdALoBdALoBdALoD5vizEb+VgoaJTK2C1+ydN+h08eSiyJ1MgL3sCbC542HM8lJAaCdwJ46a6KQGtJ0AJPcCVADWkmzQSbXsATpz0S9hYjGl3wgu8AT9kbS3JsymJ17ZXXO4WN/ol0LMwAJNgCSdwGp+ikgxQGBjBWLiiblY2ylKwZkpICAIAgCAIAgCA+iAIAhAQBAEAQBAEB2+yH/6NF/5MX+pU4j/Kl4F2H/zY+J7Kf2bq9oOo9q62z/aOt6rJfrZP0eXW183xcLLQj1majmtbh5cTfl1dquW9+Iwj2v2Cg/wbq/id7d+iv1uYfpc+uX4t2tsttLKanV9bPrvl4d3eRTz9XHqfn+S4WyF2OV7aQNLXUU7bMtlMh6oPy20+K/ndRNyWGg5815CCi8RNQ5HV7B4VPSYtFDUxmKQ00zw0ljuyWkA3aSN7T9Fdi6salByi76oqwtOVOslJcGcrox632WVscctpZ42maB9P1sdmt+Jkm+PXv3u04rDHZc6u+Gzvb/sswd8rsuO6tc+eE108GPyQNqesbPUtbO5rWASZY3FoIA0LSS02tqCpqQjPC5nG1lp3GNOco4nLe93qZ7N4lNUbQe+kL+qdWxR3DRlY3rLN0H3UVqcYYXsrexNKblie0+Z8Njet9grBh2T/ABH2ht/0fWdR2fgz6Wvmv+dlOIy9ZHrPht8rkUL9XLq/iv6Hmtq/afa3+2mM1AZEH5Ort8AtmyaZuff3WW3h8mTsbGrXz5+3udQrikIAgCAIAgCAIAgCAyugLdALoBdALoBdALoBdALoD7UcXWSRx3Lc72NuGueRc2uGt1cRvsNSoZlFXaR2U2BvbII8zw11T7O9zm2Dbtic1z8riBfrdAT8vO4EXRa6LTtfjYNwM9rKZ75GHJ1QbIA8yj3zDJaNg6u5JJ0ew8VGa46nk/3vJFgbgIHGZkYmjlc87+qywmVgfY3Ac0A7hbtaG2s3TCovTXf04hmCvNRLBne58LY/gaJHuL8ujW5wMrS/V2a2neourbBUnmavsKbAiWwvEpaZXwsuG9j3k3V5WyB3be3eWWGgOumpyJjR0Wu5J8DyMqXtfL/9YsFjEWXDmtJJcXWb8QsBcnfZL3IdKybT2MqXAS8wHrgDM6nbYC7m9dHI+5F+HV2HO/BGyY0b213+5JMEyRzyiVzXQSPYAWNa4hvUgm2fML9cNwI01IumYdTZN3/dDi47hnsk5gDnOsL3czq79oi4Fzcab1kncrqwySsdepKwgCAIAgCAIAgCAICoAgCAICoBdALoAgIgCAlkAsOSAIBZASyAWQktkIFkAQkIQEAQBAEAQBAEAQBAEAQBAEBUAQBAEBEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAf/2Q==" alt="Easyship" class="partner-logo">
+                </div>
+                
+                <div class="partner-card animate-on-scroll scale-in" style="animation-delay: 0.8s;">
+                    <img src="data:image/png;base64,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" alt="Freightos" class="partner-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contacts Section -->
+    <section class="contacts-section" id="contacts">
+        <div class="animated-bg">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="contacts-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="Контакты" data-en="Contacts" data-uz="Kontaktlar">Контакты</h2>
+            <p class="contacts-subtitle lang-text animate-on-scroll fade-in-up" data-ru="Свяжитесь с нами удобным способом" data-en="Contact us in any convenient way" data-uz="Biz bilan qulay usulda bog'laning">Свяжитесь с нами удобным способом</p>
+            
+            <div class="contacts-row">
+                <a href="https://t.me/umid70_03" target="_blank" class="contact-icon-link animate-on-scroll scale-in" style="animation-delay: 0.1s;" aria-label="Telegram">
+                    <div class="contact-icon-circle telegram-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="#0088cc">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.121.099.155.232.171.326.016.093.036.306.02.472z"/>
+                        </svg>
+                    </div>
+                </a>
+                
+                <a href="https://www.instagram.com/s.u.j_?igsh=MTFnemZndHJxZmZ6aQ==" target="_blank" class="contact-icon-link animate-on-scroll scale-in" style="animation-delay: 0.2s;" aria-label="Instagram">
+                    <div class="contact-icon-circle instagram-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="url(#instagram-gradient-contact)">
+                            <defs>
+                                <linearGradient id="instagram-gradient-contact" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#FFDD55" />
+                                    <stop offset="50%" style="stop-color:#FF543E" />
+                                    <stop offset="100%" style="stop-color:#C837AB" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                </a>
+                
+                <a href="tel:+998972434957" class="contact-icon-link animate-on-scroll scale-in" style="animation-delay: 0.3s;" aria-label="Phone">
+                    <div class="contact-icon-circle phone-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </div>
+                </a>
+                
+                <a href="umidchik215@gmail.com" class="contact-icon-link animate-on-scroll scale-in" style="animation-delay: 0.4s;" aria-label="Email">
+                    <div class="contact-icon-circle email-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section with Map -->
+    <section class="location-section" id="location">
+        <div class="animated-bg">
+            <div class="floating-particles"></div>
+        </div>
+        <div class="location-container">
+            <h2 class="lang-text animate-on-scroll fade-in-up" data-ru="Мы находимся" data-en="Our Location" data-uz="Biz joylashganmiz">Мы находимся</h2>
+            <p class="location-subtitle lang-text animate-on-scroll fade-in-up" data-ru="Расположены в городе Ташкент" data-en="Located in Tashkent city" data-uz="Toshkent shahrida joylashganmiz">Расположены в городе Ташкент</p>
+            
+            <div class="location-info animate-on-scroll scale-in">
+                <div class="location-address">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <div>
+                        <h4 class="lang-text" data-ru="Адрес" data-en="Address" data-uz="Manzil">Адрес</h4>
+                        <p class="lang-text" data-ru="Ташкентская область, Зангиатинский район, махаллинский сход граждан Тариктешар" data-en="Tashkent region, Zangiata district, Tarikteсhar makhalla" data-uz="Toshkent viloyati, Zangiota tumani, Tariktechar mahallasi">Ташкентская область, Зангиатинский район, махаллинский сход граждан Тариктешар</p>
+                        <p class="lang-text" data-ru="г. Ташкент, Узбекистан" data-en="Tashkent, Uzbekistan" data-uz="Toshkent, O'zbekiston">г. Ташкент, Узбекистан</p>
+                    </div>
+                </div>
+                
+                <div class="map-buttons">
+                    <button class="map-btn yandex-btn" onclick="openMap('yandex')">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                        </svg>
+                        <span class="lang-text" data-ru="Яндекс Карты" data-en="Yandex Maps" data-uz="Yandex Xaritalar">Яндекс Карты</span>
+                    </button>
+                    
+                    <button class="map-btn google-btn" onclick="openMap('google')">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span class="lang-text" data-ru="Google Карты" data-en="Google Maps" data-uz="Google Xaritalar">Google Карты</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="location-map animate-on-scroll scale-in">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2996.308654729614!2d69.13899631542398!3d41.22321517927511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDHCsDEzJzIzLjYiTiA2OcKwMDgnMjguNCJF!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; border-radius: 20px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="lang-text" data-ru="Мы находимся" data-en="Our Location" data-uz="Biz joylashganmiz">Мы находимся</h3>
+                    <p class="lang-text" data-ru="Ташкентская область, Зангиатинский район, махаллинский сход граждан Тариктешар" data-en="Tashkent region, Zangiata district, Tarikteсhar makhalla" data-uz="Toshkent viloyati, Zangiota tumani, Tariktechar mahallasi">г. Ташкент, Узбекистан</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="lang-text" data-ru="Контакты" data-en="Contacts" data-uz="Kontaktlar">Контакты</h3>
+                    <p>Telegram: <a href="https://t.me/umid70_03" target="_blank">@umid70_03</a></p>
+                    <p>Instagram: <a href="https://www.instagram.com/s.u.j_?igsh=MTFnemZndHJxZmZ6aQ==" target="_blank">@s.u.j_</a></p>
+                    <p><span class="lang-text" data-ru="Телефон" data-en="Phone" data-uz="Telefon">Телефон</span>: <a href="tel:+998972434957">+998 97 243 49 57</a></p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="lang-text" data-ru="О компании" data-en="About Company" data-uz="Kompaniya haqida">О компании</h3>
+                    <p class="lang-text" data-ru="Мы предоставляем полный спектр таможенных услуг с 2007 года" data-en="We have been providing a full range of customs services since 2007" data-uz="Biz 2007 yildan beri to'liq bojxona xizmatlarini taqdim etamiz">Мы предоставляем полный спектр таможенных услуг с 2007 года</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 MoyDeklarant.uz. <span class="lang-text" data-ru="Все права защищены" data-en="All rights reserved" data-uz="Barcha huquqlar himoyalangan">Все права защищены</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            
+            <div id="formSection">
+                <h2 class="lang-text" data-ru="Форма заявки" data-en="Application Form" data-uz="Ariza shakli">Форма заявки</h2>
+                <p class="lang-text" data-ru="Оставьте свои контакты и мы свяжемся с вами" data-en="Leave your contacts and we will contact you" data-uz="Kontaktlaringizni qoldiring va biz siz bilan bog'lanamiz">Оставьте свои контакты и мы свяжемся с вами</p>
+                
+                <form id="modalForm">
+                    <div class="form-group">
+                        <label class="lang-text" data-ru="Ваше имя:" data-en="Your Name:" data-uz="Ismingiz:">Ваше имя:</label>
+                        <input type="text" id="modalName" placeholder="Sardorbek" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="lang-text" data-ru="Номер телефона:" data-en="Phone Number:" data-uz="Telefon raqami:">Номер телефона:</label>
+                        <input type="tel" id="modalPhone" placeholder="+998972434957" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="lang-text" data-ru="Комментарий (необязательно):" data-en="Comment (optional):" data-uz="Izoh (ixtiyoriy):">Комментарий (необязательно):</label>
+                        <textarea id="modalComment" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="lang-text" data-ru="Telegram (необязательно):" data-en="Telegram (optional):" data-uz="Telegram (ixtiyoriy):">Telegram (необязательно):</label>
+                        <input type="text" id="modalTelegram" placeholder="@username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="lang-text" data-ru="Instagram (необязательно):" data-en="Instagram (optional):" data-uz="Instagram (ixtiyoriy):">Instagram (необязательно):</label>
+                        <input type="text" id="modalInstagram" placeholder="@username">
+                    </div>
+                    
+                    <button type="submit" class="btn-submit lang-text" data-ru="Отправить" data-en="Submit" data-uz="Yuborish">Отправить</button>
+                    
+                    <p style="font-size: 12px; color: #999; margin-top: 20px;" class="lang-text" data-ru="При нажатии кнопки 'Отправить' вы даете согласие на обработку ваших персональных данных" data-en="By clicking 'Submit', you consent to the processing of your personal data" data-uz="'Yuborish' tugmasini bosish orqali shaxsiy ma'lumotlaringizni qayta ishlashga rozilik bildirasiz">
+                        При нажатии кнопки "Отправить" вы даете согласие на обработку ваших персональных данных
+                    </p>
+                </form>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✓</div>
+                <h3 class="lang-text" data-ru="Благодарим за обращение!" data-en="Thank you for contacting us!" data-uz="Murojaat qilganingiz uchun rahmat!">Благодарим за обращение!</h3>
+                <p class="lang-text" data-ru="С вами свяжутся в течение 24 часов" data-en="You will be contacted within 24 hours" data-uz="Siz bilan 24 soat ichida bog'lanamiz">С вами свяжутся в течение 24 часов</p>
+                <button class="btn-submit lang-text" onclick="closeModal()" data-ru="Закрыть" data-en="Close" data-uz="Yopish">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+</body>
+</html>
