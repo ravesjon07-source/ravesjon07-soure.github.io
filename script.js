@@ -1,6 +1,6 @@
 // ===== TELEGRAM BOT CONFIGURATION =====
-const BOT_TOKEN = "8233490739:AAG7iLvbECdJekX-g20IY1wSqbuH9275DNs";
-const CHAT_ID = "7973433557";
+const BOT_TOKEN = "8559726245:AAE_DZjrgQKNXm5LzYegwlIyuL-xS8sip3g";
+const CHAT_ID = "1126151371";
 
 // ===== LANGUAGE SYSTEM =====
 let currentLang = 'ru';
@@ -579,4 +579,5 @@ window.addEventListener('error', function(e) {
 
 window.addEventListener('unhandledrejection', function(e) {
     console.error('Unhandled promise rejection:', e.reason);
+
 });
