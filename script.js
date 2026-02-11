@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
     initMobileMenu();
     initCounters();
+    initFormValidation();
     
     const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
     setLanguage(savedLang);
@@ -246,7 +247,6 @@ function animateCounter(element) {
 let originalFormHTML = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Сохраняем оригинальную форму при загрузке страницы
     const formSection = document.getElementById('formSection');
     if (formSection) {
         originalFormHTML = formSection.innerHTML;
@@ -259,7 +259,6 @@ function openModal() {
     const formSection = document.getElementById('formSection');
     const successMessage = document.getElementById('successMessage');
     
-    // Восстанавливаем оригинальную форму
     if (originalFormHTML) {
         formSection.innerHTML = originalFormHTML;
     }
@@ -271,9 +270,9 @@ function openModal() {
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     
-    // Переинициализируем обработчик формы
     setTimeout(() => {
         initFormHandler();
+        initFormValidation();
     }, 100);
 }
 
@@ -283,7 +282,6 @@ function closeModal() {
     modal.style.display = 'none';
     document.body.style.overflow = '';
     
-    // Восстанавливаем оригинальную форму
     const formSection = document.getElementById('formSection');
     if (originalFormHTML) {
         formSection.innerHTML = originalFormHTML;
@@ -292,7 +290,6 @@ function closeModal() {
     document.getElementById('successMessage').style.display = 'none';
 }
 
-// Закрытие при клике вне окна
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('modal');
     if (event.target === modal) {
@@ -300,33 +297,22 @@ window.addEventListener('click', function(event) {
     }
 });
 
-// ===== ПОКАЗ ДЕТАЛЕЙ УСЛУГИ (только для раздела "Наши услуги") =====
+// ===== ПОКАЗ ДЕТАЛЕЙ УСЛУГИ =====
 function showServiceDetails(button) {
-    console.log('showServiceDetails вызвана');
-    
     const serviceCard = button.closest('.service-card-new');
-    if (!serviceCard) {
-        console.error('Не найдена карточка услуги');
-        return;
-    }
+    if (!serviceCard) return;
     
     const serviceTitle = serviceCard.querySelector('h3');
     const serviceList = serviceCard.querySelector('.service-list');
     
-    if (!serviceTitle || !serviceList) {
-        console.error('Не найдены элементы услуги');
-        return;
-    }
+    if (!serviceTitle || !serviceList) return;
     
     const title = serviceTitle.textContent;
     const listHTML = serviceList.innerHTML;
     
-    console.log('Название услуги:', title);
-    
     const modal = document.getElementById('modal');
     const formSection = document.getElementById('formSection');
     
-    // Создаём контент с деталями
     const detailsHTML = `
         <span class="modal-close" onclick="closeModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; color: var(--text-light); cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 70, 85, 0.1);">&times;</span>
         
@@ -347,77 +333,187 @@ function showServiceDetails(button) {
         </button>
     `;
     
-    // Заменяем содержимое
     formSection.innerHTML = detailsHTML;
     formSection.style.display = 'block';
-    
-    // Скрываем сообщение об успехе
     document.getElementById('successMessage').style.display = 'none';
     
-    // Показываем модальное окно
     modal.classList.add('active');
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
-    console.log('Модальное окно открыто с деталями');
 }
 
-// ===== ПОКАЗ ФОРМЫ ЗАЯВКИ С АВТОЗАПОЛНЕНИЕМ =====
+// ===== ПОКАЗ ФОРМЫ ЗАЯВКИ =====
 function showServiceForm(serviceTitle) {
-    console.log('showServiceForm вызвана для:', serviceTitle);
-    
     const formSection = document.getElementById('formSection');
     
-    // Восстанавливаем оригинальную форму
     if (originalFormHTML) {
         formSection.innerHTML = originalFormHTML;
     }
     
     formSection.style.display = 'block';
     
-    // Автозаполняем комментарий через небольшую задержку
     setTimeout(() => {
         const commentField = document.getElementById('modalComment');
         if (commentField) {
             commentField.value = `Интересует услуга: ${serviceTitle}`;
-            console.log('Комментарий заполнен');
         }
         
-        // Переинициализируем обработчик формы
         initFormHandler();
+        initFormValidation();
     }, 100);
 }
 
-// ===== ИНИЦИАЛИЗАЦИЯ ОБРАБОТЧИКА ФОРМЫ =====
+// ===== ВАЛИДАЦИЯ ФОРМЫ =====
+function initFormValidation() {
+    // ВАЛИДАЦИЯ ИМЕНИ
+    const nameInput = document.getElementById('modalName');
+    if (nameInput && !nameInput.dataset.validated) {
+        nameInput.dataset.validated = 'true';
+        
+        nameInput.addEventListener('input', function(e) {
+            // Разрешаем только буквы и пробелы
+            let value = e.target.value;
+            value = value.replace(/[^а-яА-ЯёЁa-zA-Z\s]/g, '');
+            e.target.value = value;
+            
+            // Визуальная обратная связь
+            if (value.trim().length >= 3) {
+                e.target.style.borderColor = '#4CAF50';
+            } else if (value.trim().length > 0) {
+                e.target.style.borderColor = '#FFA500';
+            } else {
+                e.target.style.borderColor = '';
+            }
+        });
+    }
+    
+    // ВАЛИДАЦИЯ ТЕЛЕФОНА
+    const phoneInput = document.getElementById('modalPhone');
+    if (phoneInput && !phoneInput.dataset.validated) {
+        phoneInput.dataset.validated = 'true';
+        
+        // Устанавливаем начальное значение
+        if (!phoneInput.value || phoneInput.value === '+998974087003') {
+            phoneInput.value = '+998 ';
+        }
+        
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value;
+            let numbers = value.replace(/\D/g, '');
+            
+            // Если пустое, вернём +998
+            if (numbers.length === 0) {
+                e.target.value = '+998 ';
+                return;
+            }
+            
+            // Если не начинается с 998, добавляем
+            if (!numbers.startsWith('998')) {
+                numbers = '998' + numbers;
+            }
+            
+            // Ограничиваем 12 цифр
+            if (numbers.length > 12) {
+                numbers = numbers.slice(0, 12);
+            }
+            
+            // Форматируем: +998 XX XXX XX XX
+            let formatted = '+998';
+            
+            if (numbers.length > 3) {
+                formatted += ' ' + numbers.slice(3, 5);
+            }
+            if (numbers.length > 5) {
+                formatted += ' ' + numbers.slice(5, 8);
+            }
+            if (numbers.length > 8) {
+                formatted += ' ' + numbers.slice(8, 10);
+            }
+            if (numbers.length > 10) {
+                formatted += ' ' + numbers.slice(10, 12);
+            }
+            
+            e.target.value = formatted;
+            
+            // Визуальная обратная связь
+            const digitsOnly = numbers.slice(3);
+            if (digitsOnly.length === 9) {
+                e.target.style.borderColor = '#4CAF50';
+            } else if (digitsOnly.length > 0) {
+                e.target.style.borderColor = '#FFA500';
+            } else {
+                e.target.style.borderColor = '';
+            }
+        });
+        
+        // Запрещаем удаление +998
+        phoneInput.addEventListener('keydown', function(e) {
+            const cursorPosition = e.target.selectionStart;
+            
+            if ((e.key === 'Backspace' || e.key === 'Delete') && cursorPosition <= 5) {
+                e.preventDefault();
+            }
+        });
+    }
+}
+
+// ===== ОБРАБОТЧИК ФОРМЫ =====
 function initFormHandler() {
     const modalForm = document.getElementById("modalForm");
-    if (!modalForm) return;
+    if (!modalForm || modalForm.dataset.initialized) return;
     
-    // Удаляем старые обработчики
-    const newForm = modalForm.cloneNode(true);
-    modalForm.parentNode.replaceChild(newForm, modalForm);
+    modalForm.dataset.initialized = 'true';
     
-    // Добавляем новый обработчик
-    newForm.addEventListener("submit", async function(e) {
+    modalForm.addEventListener("submit", async function(e) {
         e.preventDefault();
         
-        const name = document.getElementById("modalName").value.trim();
-        const phone = document.getElementById("modalPhone").value.trim();
+        const nameInput = document.getElementById("modalName");
+        const phoneInput = document.getElementById("modalPhone");
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
         const comment = document.getElementById("modalComment").value.trim();
         const telegram = document.getElementById("modalTelegram").value.trim();
         const instagram = document.getElementById("modalInstagram").value.trim();
         
-        if (!name || !phone) {
+        // Валидация имени
+        if (name.length < 3) {
             const errorMessages = {
-                ru: 'Пожалуйста, заполните имя и телефон',
-                en: 'Please fill in name and phone',
-                uz: 'Iltimos, ism va telefonni to\'ldiring'
+                ru: 'Имя должно содержать минимум 3 буквы',
+                en: 'Name must contain at least 3 letters',
+                uz: 'Ism kamida 3 ta harfdan iborat bo\'lishi kerak'
             };
             alert(errorMessages[currentLang]);
+            nameInput.focus();
             return;
         }
         
-        const submitBtn = newForm.querySelector('.btn-submit');
+        if (!/^[а-яА-ЯёЁa-zA-Z\s]+$/.test(name)) {
+            const errorMessages = {
+                ru: 'Имя может содержать только буквы',
+                en: 'Name can only contain letters',
+                uz: 'Ism faqat harflardan iborat bo\'lishi mumkin'
+            };
+            alert(errorMessages[currentLang]);
+            nameInput.focus();
+            return;
+        }
+        
+        // Валидация телефона
+        const phoneNumbers = phone.replace(/\D/g, '');
+        const digitsOnly = phoneNumbers.slice(3);
+        
+        if (digitsOnly.length !== 9) {
+            const errorMessages = {
+                ru: 'Введите полный номер (9 цифр после +998)',
+                en: 'Enter complete number (9 digits after +998)',
+                uz: 'To\'liq raqamni kiriting (+998 dan keyin 9 ta raqam)'
+            };
+            alert(errorMessages[currentLang]);
+            phoneInput.focus();
+            return;
+        }
+        
+        const submitBtn = modalForm.querySelector('.btn-submit');
         const originalText = submitBtn.textContent;
         const loadingTexts = {
             ru: 'Отправка...',
@@ -441,11 +537,11 @@ function initFormHandler() {
         if (success) {
             document.getElementById("formSection").style.display = "none";
             document.getElementById("successMessage").style.display = "block";
-            newForm.reset();
+            modalForm.reset();
         } else {
             const errorMessages = {
-                ru: '❌ Ошибка отправки. Попробуйте позже.',
-                en: '❌ Sending error. Try later.',
+                ru: '❌ Ошибка отправки.',
+                en: '❌ Sending error.',
                 uz: '❌ Yuborishda xato.'
             };
             alert(errorMessages[currentLang]);
@@ -453,9 +549,10 @@ function initFormHandler() {
     });
 }
 
-// Инициализируем при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    initFormHandler();
+    setTimeout(() => {
+        initFormHandler();
+    }, 500);
 });
 
 // ===== TELEGRAM INTEGRATION =====
@@ -536,41 +633,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-});
-
-// ===== PHONE NUMBER FORMATTER =====
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(() => {
-        const phoneInputs = document.querySelectorAll('input[type="tel"]');
-        phoneInputs.forEach(input => {
-            input.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                
-                if (value.length > 0 && !value.startsWith('998')) {
-                    value = '998' + value;
-                }
-                
-                if (value.length >= 3) {
-                    value = '+' + value.slice(0, 3) + ' ' + value.slice(3);
-                }
-                if (value.length >= 7) {
-                    value = value.slice(0, 7) + ' ' + value.slice(7);
-                }
-                if (value.length >= 11) {
-                    value = value.slice(0, 11) + ' ' + value.slice(11);
-                }
-                if (value.length >= 14) {
-                    value = value.slice(0, 14) + ' ' + value.slice(14, 16);
-                }
-                
-                e.target.value = value;
-            });
-            
-            if (!input.value) {
-                input.value = '+998 ';
-            }
-        });
-    }, 500);
 });
 
 console.log('%c🚀 MoyDeklarant.uz', 'color: #8B0000; font-size: 24px; font-weight: bold;');
