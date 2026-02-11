@@ -617,7 +617,7 @@ async function sendToTelegram(name, phone, source, comment = '', telegram = '', 
     }
 }
 
-// ===== SMOOTH SCROLL =====
+// ===== SMOOTH. SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
