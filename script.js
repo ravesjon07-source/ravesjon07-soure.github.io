@@ -225,90 +225,228 @@ function showServiceForm(serviceTitle) {
     }, 100);
 }
 
-// ===== PHONE VALIDATION (гибкая — по умолчанию +998, можно изменить) =====
+
+// ===== PHONE & NAME VALIDATION (задачи No5) =====
+// Валидные коды мобильных операторов Узбекистана
+const UZ_VALID_OPERATORS = [
+  '90','91','93','94','95','97','98','99',  // Beeline, Ucell, Mobiuz
+  '33',                                      // UMS
+  '71','74','75','77','78',                  // UzTelecom/UzMobile
+  '55','88',                                 // Perfectum Mobile
+  '50','52','53','54','56','57','58',        // прочие зарегистрированные
+  '60','61','62','63','64','65','66','67','68','69',
+  '70','72','73','76','79','80','81','82','83','84','85','86','87','89'
+];
+
+// Список точно известных действующих операторов (приоритетная проверка)
+const UZ_KNOWN_OPERATORS = ['90','91','93','94','95','97','98','99','33','71','74','75','77','78','55','88','50'];
+
 function initFormValidation() {
-    // --- Имя ---
-    const nameInput = document.getElementById('modalName');
-    if (nameInput && !nameInput.dataset.validated) {
-        nameInput.dataset.validated = 'true';
-        nameInput.addEventListener('input', function (e) {
-            e.target.value = e.target.value.replace(/[^а-яА-ЯёЁa-zA-Z\u00C0-\u024F\s\-]/g, '');
-            const len = e.target.value.trim().length;
-            e.target.style.borderColor = len >= 2 ? '#4CAF50' : len > 0 ? '#FFA500' : '';
-        });
-    }
+  // ---- Имя ----
+  const nameInput = document.getElementById('modalName');
+  if (nameInput && !nameInput.dataset.validated) {
+    nameInput.dataset.validated = 'true';
 
-    // --- Телефон ---
-    const phoneInput = document.getElementById('modalPhone');
-    if (!phoneInput || phoneInput.dataset.validated) return;
-    phoneInput.dataset.validated = 'true';
+    // Запрет ввода цифр и спецсимволов в реальном времени
+    nameInput.addEventListener('input', function (e) {
+      // Убрать цифры и запрещённые спецсимволы
+      let val = e.target.value;
+      // Оставить только буквы (кирилл, лат, узб, дефис, пробел)
+      val = val.replace(/[^а-яА-ЯёЁa-zA-Z\u00C0-\u024F\u0100-\u024F\s\-]/g, '');
+      // Убрать цифры (двойная гарантия)
+      val = val.replace(/[0-9]/g, '');
+      e.target.value = val;
 
-    const phoneHint = document.getElementById('phoneHint');
-
-    // Значение по умолчанию
-    if (!phoneInput.value || phoneInput.value.trim() === '') {
-        phoneInput.value = '+998';
-    }
-
-    function hint(text, type) {
-        if (!phoneHint) return;
-        phoneHint.textContent = text;
-        phoneHint.className = 'phone-hint ' + (type || 'neutral');
-    }
-
-    function updateVisual(val) {
-        const digits = val.replace(/\D/g, '');
-        const labels = {
-            ru: { tip: 'Введите номер телефона', ok: 'Номер введён корректно ✓', long: 'Слишком длинный номер' },
-            en: { tip: 'Enter phone number', ok: 'Number is valid ✓', long: 'Number is too long' },
-            uz: { tip: 'Telefon raqamini kiriting', ok: 'Raqam to\'g\'ri ✓', long: 'Raqam juda uzun' }
-        }[currentLang] || { tip: 'Введите номер', ok: 'Номер корректен ✓', long: 'Слишком длинный' };
-
-        if (digits.length === 0) {
-            phoneInput.style.borderColor = '';
-            hint(labels.tip, 'neutral');
-        } else if (digits.length > 15) {
-            phoneInput.style.borderColor = '#FF4444';
-            hint(labels.long, 'invalid');
-        } else if (digits.length >= 7) {
-            phoneInput.style.borderColor = '#4CAF50';
-            hint(labels.ok, 'valid');
-        } else {
-            phoneInput.style.borderColor = '#FFA500';
-            hint('', 'neutral');
-        }
-    }
-
-    phoneInput.addEventListener('focus', function () {
-        if (!this.value || this.value.trim() === '') this.value = '+998';
-        updateVisual(this.value);
+      const len = val.trim().length;
+      if (len === 0) {
+        e.target.style.borderColor = '';
+      } else if (len < 2) {
+        e.target.style.borderColor = '#FFA500';
+      } else {
+        e.target.style.borderColor = '#4CAF50';
+      }
     });
 
-    phoneInput.addEventListener('input', function (e) {
-        let val = e.target.value;
-        // Убрать недопустимые символы (оставляем +, цифры, пробел, -, скобки)
-        val = val.replace(/[^\d+\s\-()]/g, '');
-        // Гарантируем + в начале
-        if (val && !val.startsWith('+')) val = '+' + val.replace(/\D/g, '');
-        e.target.value = val;
-        updateVisual(val);
+    // Запрет вставки цифр и спецсимволов
+    nameInput.addEventListener('paste', function (e) {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      const clean = pasted.replace(/[^а-яА-ЯёЁa-zA-Z\u00C0-\u024F\s\-]/g, '').replace(/[0-9]/g, '');
+      this.value = clean;
+      this.dispatchEvent(new Event('input'));
     });
 
-    phoneInput.addEventListener('keydown', function (e) {
-        const allowed = ['Backspace','Delete','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Tab','Home','End'];
-        if (!allowed.includes(e.key) && !/^[\d+\s\-()]$/.test(e.key)) e.preventDefault();
+    // Запрет нажатий цифр и спецсимволов
+    nameInput.addEventListener('keydown', function (e) {
+      const blocked = /^[0-9!"#$%&'()*+,.\/:;<=>?@\[\\\]^_`{|}~]$/;
+      if (blocked.test(e.key)) e.preventDefault();
     });
+  }
 
-    phoneInput.addEventListener('paste', function (e) {
+  // ---- Телефон ----
+  const phoneInput = document.getElementById('modalPhone');
+  if (!phoneInput || phoneInput.dataset.validated) return;
+  phoneInput.dataset.validated = 'true';
+
+  const phoneHint = document.getElementById('phoneHint');
+
+  // Авто-заполнение +998
+  if (!phoneInput.value || phoneInput.value.trim() === '') {
+    phoneInput.value = '+998';
+  }
+
+  function getLabels() {
+    const l = {
+      ru: {
+        tip: 'Формат: +998 XX XXXXXXX',
+        ok: 'Номер введён корректно ✓',
+        long: 'Номер слишком длинный (макс. 12 цифр)',
+        short: 'Введите полный номер (12 цифр)',
+        badOp: 'Такой код оператора не существует в Узбекистане',
+        noDigits: 'Введите только цифры после +998'
+      },
+      en: {
+        tip: 'Format: +998 XX XXXXXXX',
+        ok: 'Number is valid ✓',
+        long: 'Number is too long (max 12 digits)',
+        short: 'Enter full number (12 digits)',
+        badOp: 'This operator code does not exist in Uzbekistan',
+        noDigits: 'Enter only digits after +998'
+      },
+      uz: {
+        tip: 'Format: +998 XX XXXXXXX',
+        ok: 'Raqam to\'g\'ri ✓',
+        long: 'Raqam juda uzun (maksimal 12 raqam)',
+        short: 'To\'liq raqam kiriting (12 raqam)',
+        badOp: 'Bunday operator kodi O\'zbekistonda mavjud emas',
+        noDigits: '+998 dan keyin faqat raqamlar kiriting'
+      }
+    };
+    return l[currentLang] || l.ru;
+  }
+
+  function hint(text, type) {
+    if (!phoneHint) return;
+    phoneHint.textContent = text;
+    phoneHint.className = 'phone-hint ' + (type || 'neutral');
+  }
+
+  function validatePhone(val) {
+    const labels = getLabels();
+    const digits = val.replace(/\D/g, '');
+
+    if (digits.length === 0) {
+      phoneInput.style.borderColor = '';
+      hint(labels.tip, 'neutral');
+      return;
+    }
+
+    // Должно начинаться с 998
+    if (!digits.startsWith('998')) {
+      phoneInput.style.borderColor = '#FF4444';
+      hint(labels.tip + ' — начните с +998', 'invalid');
+      return;
+    }
+
+    // Слишком длинный
+    if (digits.length > 12) {
+      phoneInput.style.borderColor = '#FF4444';
+      hint(labels.long, 'invalid');
+      return;
+    }
+
+    // Проверка кода оператора (4-й и 5-й символ после 998)
+    if (digits.length >= 5) {
+      const opCode = digits.substring(3, 5);
+      const isKnown = UZ_KNOWN_OPERATORS.includes(opCode);
+      const isAny   = UZ_VALID_OPERATORS.includes(opCode);
+
+      if (!isAny) {
+        phoneInput.style.borderColor = '#FF4444';
+        hint(labels.badOp, 'invalid');
+        return;
+      }
+
+      if (digits.length === 12) {
+        phoneInput.style.borderColor = '#4CAF50';
+        hint(labels.ok, 'valid');
+        return;
+      }
+
+      if (digits.length < 12) {
+        phoneInput.style.borderColor = '#FFA500';
+        hint(labels.short, 'neutral');
+        return;
+      }
+    } else {
+      // Неполный
+      phoneInput.style.borderColor = '#FFA500';
+      hint(labels.tip, 'neutral');
+    }
+  }
+
+  phoneInput.addEventListener('focus', function () {
+    if (!this.value || this.value.trim() === '') this.value = '+998';
+    validatePhone(this.value);
+  });
+
+  phoneInput.addEventListener('input', function (e) {
+    let val = e.target.value;
+    // Убрать всё кроме + в начале и цифр
+    // Запрет букв и спецсимволов кроме +
+    val = val.replace(/[^+\d]/g, '');
+    // + только в начале
+    if (val.indexOf('+') > 0) val = val.replace(/\+/g, '');
+    if (val && !val.startsWith('+')) val = '+' + val;
+    // Ограничение: +998 + 9 цифр = max 13 символов с +
+    const digits = val.replace(/\D/g, '');
+    if (digits.length > 12) {
+      val = '+' + digits.substring(0, 12);
+    }
+    e.target.value = val;
+    validatePhone(val);
+  });
+
+  phoneInput.addEventListener('keydown', function (e) {
+    const allowed = ['Backspace','Delete','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Tab','Home','End'];
+    const isDigit = /^\d$/.test(e.key);
+    const isPlus = e.key === '+' && this.selectionStart === 0;
+    if (!allowed.includes(e.key) && !isDigit && !isPlus) {
+      e.preventDefault();
+    }
+    // Запрет превышения длины
+    const digits = this.value.replace(/\D/g, '');
+    if (isDigit && digits.length >= 12) {
+      e.preventDefault();
+    }
+  });
+
+  phoneInput.addEventListener('paste', function (e) {
+    e.preventDefault();
+    const pasted = (e.clipboardData || window.clipboardData).getData('text').trim();
+    // Очистить от всего кроме цифр и +
+    let clean = pasted.replace(/[^+\d]/g, '');
+    if (!clean.startsWith('+')) clean = '+' + clean.replace(/\+/g, '');
+    const digits = clean.replace(/\D/g, '');
+    if (digits.length > 12) clean = '+' + digits.substring(0, 12);
+    this.value = clean;
+    validatePhone(this.value);
+  });
+
+  // Блокировка удаления +998 (первые 4 символа)
+  phoneInput.addEventListener('keydown', function (e) {
+    if ((e.key === 'Backspace' || e.key === 'Delete') && this.selectionStart <= 4 && this.selectionEnd <= 4) {
+      // Не удалять +998
+      if (this.value.length <= 4) {
         e.preventDefault();
-        const pasted = (e.clipboardData || window.clipboardData).getData('text').trim();
-        const clean = pasted.replace(/[^\d+\s\-()]/g, '');
-        this.value = clean.startsWith('+') ? clean : '+' + clean.replace(/\D/g, '');
-        updateVisual(this.value);
-    });
+        return;
+      }
+    }
+  });
 
-    updateVisual(phoneInput.value);
+  validatePhone(phoneInput.value);
 }
+
 
 // ===== FORM HANDLER =====
 function initFormHandler() {
@@ -337,13 +475,13 @@ function initFormHandler() {
 
         // Валидация телефона — только длина (гибкая, без привязки к оператору)
         const digits = phone.replace(/\D/g, '');
-        if (digits.length < 7) {
+        if (digits.length < 12 || !digits.startsWith('998')) {
             const m = { ru:'Введите корректный номер телефона', en:'Enter a valid phone number', uz:'To\'g\'ri telefon raqamini kiriting' };
             alert(m[currentLang] || m.ru);
             if (phoneEl) phoneEl.focus();
             return;
         }
-        if (digits.length > 15) {
+        if (digits.length > 12) {
             const m = { ru:'Номер телефона слишком длинный', en:'Phone number is too long', uz:'Telefon raqami juda uzun' };
             alert(m[currentLang] || m.ru);
             if (phoneEl) phoneEl.focus();
