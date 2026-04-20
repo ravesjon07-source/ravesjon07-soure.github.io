@@ -290,36 +290,33 @@ function initFormValidation() {
 
   const phoneHint = document.getElementById('phoneHint');
 
-  // Авто-заполнение +998
-  if (!phoneInput.value || phoneInput.value.trim() === '') {
-    phoneInput.value = '+998';
-  }
+  // No auto-fill - allow any country code
 
   function getLabels() {
     const l = {
       ru: {
-        tip: 'Формат: +998 XX XXXXXXX',
-        ok: 'Номер введён корректно ✓',
-        long: 'Номер слишком длинный (макс. 12 цифр)',
-        short: 'Введите полный номер (12 цифр)',
-        badOp: 'Такой код оператора не существует в Узбекистане',
-        noDigits: 'Введите только цифры после +998'
+        tip: 'Введите номер телефона',
+        ok: 'Номер введён ✓',
+        long: 'Номер слишком длинный',
+        short: 'Введите больше цифр',
+        badOp: '',
+        noDigits: 'Только цифры и +'
       },
       en: {
-        tip: 'Format: +998 XX XXXXXXX',
-        ok: 'Number is valid ✓',
-        long: 'Number is too long (max 12 digits)',
-        short: 'Enter full number (12 digits)',
-        badOp: 'This operator code does not exist in Uzbekistan',
-        noDigits: 'Enter only digits after +998'
+        tip: 'Enter phone number',
+        ok: 'Number entered ✓',
+        long: 'Number is too long',
+        short: 'Enter more digits',
+        badOp: '',
+        noDigits: 'Digits and + only'
       },
       uz: {
-        tip: 'Format: +998 XX XXXXXXX',
-        ok: 'Raqam to\'g\'ri ✓',
-        long: 'Raqam juda uzun (maksimal 12 raqam)',
-        short: 'To\'liq raqam kiriting (12 raqam)',
-        badOp: 'Bunday operator kodi O\'zbekistonda mavjud emas',
-        noDigits: '+998 dan keyin faqat raqamlar kiriting'
+        tip: 'Telefon raqamini kiriting',
+        ok: 'Raqam kiritildi ✓',
+        long: 'Raqam juda uzun',
+        short: 'Ko\'proq raqam kiriting',
+        badOp: '',
+        noDigits: 'Faqat raqamlar va +'
       }
     };
     return l[currentLang] || l.ru;
@@ -335,58 +332,25 @@ function initFormValidation() {
     const labels = getLabels();
     const digits = val.replace(/\D/g, '');
 
-    if (digits.length === 0) {
+    if (digits.length === 0 && (!val || val.trim() === '' || val.trim() === '+')) {
       phoneInput.style.borderColor = '';
-      hint(labels.tip, 'neutral');
+      hint('', 'neutral');
       return;
     }
 
-    // Должно начинаться с 998
-    if (!digits.startsWith('998')) {
-      phoneInput.style.borderColor = '#FF4444';
-      hint(labels.tip + ' — начните с +998', 'invalid');
-      return;
-    }
-
-    // Слишком длинный
-    if (digits.length > 12) {
-      phoneInput.style.borderColor = '#FF4444';
-      hint(labels.long, 'invalid');
-      return;
-    }
-
-    // Проверка кода оператора (4-й и 5-й символ после 998)
     if (digits.length >= 5) {
-      const opCode = digits.substring(3, 5);
-      const isKnown = UZ_KNOWN_OPERATORS.includes(opCode);
-      const isAny   = UZ_VALID_OPERATORS.includes(opCode);
-
-      if (!isAny) {
-        phoneInput.style.borderColor = '#FF4444';
-        hint(labels.badOp, 'invalid');
-        return;
-      }
-
-      if (digits.length === 12) {
-        phoneInput.style.borderColor = '#4CAF50';
-        hint(labels.ok, 'valid');
-        return;
-      }
-
-      if (digits.length < 12) {
-        phoneInput.style.borderColor = '#FFA500';
-        hint(labels.short, 'neutral');
-        return;
-      }
-    } else {
-      // Неполный
+      phoneInput.style.borderColor = '#4CAF50';
+      hint(labels.ok, 'valid');
+    } else if (digits.length > 0) {
       phoneInput.style.borderColor = '#FFA500';
-      hint(labels.tip, 'neutral');
+      hint(labels.short, 'neutral');
+    } else {
+      phoneInput.style.borderColor = '';
+      hint('', 'neutral');
     }
   }
 
   phoneInput.addEventListener('focus', function () {
-    if (!this.value || this.value.trim() === '') this.value = '+998';
     validatePhone(this.value);
   });
 
@@ -398,11 +362,6 @@ function initFormValidation() {
     // + только в начале
     if (val.indexOf('+') > 0) val = val.replace(/\+/g, '');
     if (val && !val.startsWith('+')) val = '+' + val;
-    // Ограничение: +998 + 9 цифр = max 13 символов с +
-    const digits = val.replace(/\D/g, '');
-    if (digits.length > 12) {
-      val = '+' + digits.substring(0, 12);
-    }
     e.target.value = val;
     validatePhone(val);
   });
@@ -414,11 +373,7 @@ function initFormValidation() {
     if (!allowed.includes(e.key) && !isDigit && !isPlus) {
       e.preventDefault();
     }
-    // Запрет превышения длины
-    const digits = this.value.replace(/\D/g, '');
-    if (isDigit && digits.length >= 12) {
-      e.preventDefault();
-    }
+    // No hard digit limit - allow any length
   });
 
   phoneInput.addEventListener('paste', function (e) {
@@ -427,22 +382,11 @@ function initFormValidation() {
     // Очистить от всего кроме цифр и +
     let clean = pasted.replace(/[^+\d]/g, '');
     if (!clean.startsWith('+')) clean = '+' + clean.replace(/\+/g, '');
-    const digits = clean.replace(/\D/g, '');
-    if (digits.length > 12) clean = '+' + digits.substring(0, 12);
     this.value = clean;
     validatePhone(this.value);
   });
 
-  // Блокировка удаления +998 (первые 4 символа)
-  phoneInput.addEventListener('keydown', function (e) {
-    if ((e.key === 'Backspace' || e.key === 'Delete') && this.selectionStart <= 4 && this.selectionEnd <= 4) {
-      // Не удалять +998
-      if (this.value.length <= 4) {
-        e.preventDefault();
-        return;
-      }
-    }
-  });
+  // No prefix lock - user can freely edit the entire number
 
   validatePhone(phoneInput.value);
 }
