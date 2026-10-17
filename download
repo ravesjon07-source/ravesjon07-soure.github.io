@@ -1,0 +1,5 @@
+# Local-only secrets and generated dependencies
+.dev.vars*
+.env*
+node_modules/
+.wrangler/
