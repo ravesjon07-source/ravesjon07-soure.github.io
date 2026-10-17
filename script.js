@@ -324,7 +324,7 @@
        the public JavaScript/source code and may be copied or misused.
        Keep this limitation in mind when publishing this file. */
     var TELEGRAM_BOT_TOKEN = '8776071935:AAGARtoHWHqsTwNqFRjGABIKYpBqDq6SeHY';
-    var TELEGRAM_CHAT_ID = '1126151371';
+    var TELEGRAM_CHAT_ID = '7973433557';
 
     function sendToTelegramBot(fields) {
       var lines = [
